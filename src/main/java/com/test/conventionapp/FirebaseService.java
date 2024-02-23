@@ -45,25 +45,19 @@ public class FirebaseService {
             @Override
             public void onDataChange(DataSnapshot eventsSnapshot) {
 
-
                 List<Map<String, Object>> eventsData = new ArrayList<>();
-
                 // Iterate through Events
                 for (DataSnapshot eventSnapshot : eventsSnapshot.getChildren()) {
                     String eventId = eventSnapshot.getKey();
-
                     Map<String, Object> eventData = eventSnapshot
                             .getValue(new GenericTypeIndicator<Map<String, Object>>() {
                             });
                     eventData.put("eventId", eventId);
-
                     eventsData.add(eventData);
                 }
-
                 future.complete(eventsData);
 
             }
-
             @Override
             public void onCancelled(DatabaseError eventsError) {
                 System.out.println("The read failed for Events: " + eventsError.getCode());

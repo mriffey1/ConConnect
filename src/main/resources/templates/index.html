@@ -9,7 +9,7 @@
 <body>
     <div th:include="~{fragments/navigation :: navigation}"></div>
     <div class="container" th:if="${not #lists.isEmpty(eventsData)}">
-        <table id="EventsTable">
+        <table id="EventsTable" cellspacing="0" cellpadding="0">
             <thead>
                 <tr data-sort-method="none">
                     <th>Event ID</th>
@@ -17,19 +17,24 @@
                     <th>Event Type</th>
                     <th>Game System</th>
                     <th>Cost</th>
-        
-                
+                    <th>Description</th>
+                    <th>Time / Location</th>
+                    <th>Ticket Availability</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="event : ${eventsData}">
+                <tr th:each="event : ${eventsData}" th:class="${event['ticketAvail'] == 0} ? 'sold-out-image' : ''">
                     <td th:text="${event['eventId']}"></td>
                     <td th:text="${event['eventTitle']}"></td>
                     <td th:text="${event['eventType']}"></td>
                     <td th:text="${event['gameSystem']}"></td>
                     <td th:text="${event['eventCost']}"></td>
-                  
-        
+                    <td th:text="${event['shortDescription']}"></td>
+                    <td >
+                        <div class="top" th:text="${event['eventLocation']}">Top</div>
+                        <div class="bottom">bottom</div>
+                    </td>
+                    <td th:text="${event['ticketAvail']}"></td>
                     
                 </tr>
             </tbody>
