@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:insert="~{fragments/header :: header}">
+    <meta charset="UTF-8">
+    <title>Events Data</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
+    
+</head>
+<body>
+    <div th:include="~{fragments/navigation :: navigation}"></div>
+    <div class="container" th:if="${not #lists.isEmpty(eventsData)}">
+        <table id="EventsTable">
+            <thead>
+                <tr data-sort-method="none">
+                    <th>Event ID</th>
+                    <th>Event Title</th>
+                    <th>Event Type</th>
+                    <th>Game System</th>
+                    <th>Cost</th>
+        
+                
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="event : ${eventsData}">
+                    <td th:text="${event['eventId']}"></td>
+                    <td th:text="${event['eventTitle']}"></td>
+                    <td th:text="${event['eventType']}"></td>
+                    <td th:text="${event['gameSystem']}"></td>
+                    <td th:text="${event['eventCost']}"></td>
+                  
+        
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container" th:if="${#lists.isEmpty(eventsData)}">
+        <p>Loading...</p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.1.0/tablesort.min.js"></script>
+    
+    <script>
+        function onPageReady() {
+            // Documentation: http://tristen.ca/tablesort/conventionapp/
+            new Tablesort(document.getElementById('EventsTable'));
+          }
+          
+          // Run the above function when the page is loaded & ready
+          document.addEventListener('DOMContentLoaded', onPageReady, false);
+          
+    </script>
+</body>
+</html>
