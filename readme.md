@@ -2,39 +2,18 @@
 
 
 
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
+<div align="center">
+
 [![Contributors][contributors-shield]][contributors-url] [![LinkedIn][linkedin-shield]][linkedin-url]
 
+</div>
 
 
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/mriffey1/ConventionWebApp">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-<h3 align="center">project_title</h3>
+<h3 align="center">Spring Boot Convention App</h3>
 
   <p align="center">
-    project_description
-   <br />
-    <a href="https://github.com/mriffey1/ConventionWebApp"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/mriffey1/ConventionWebApp">View Demo</a>
-    ·
-    <a href="https://github.com/mriffey1/ConventionWebApp/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/mriffey1/ConventionWebApp/issues">Request Feature</a>
-  </p>
+    Creation of Spring Boot web application utilitizing Java. The purpose of this application is to create an open-source modular option for small conventions (such as comic conventions, gaming conventions, sci-fi, etc). 
+  
 </div>
 
 
@@ -70,16 +49,15 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `mriffey1`, `ConventionWebApp`, `twitter_handle`, `mriffey`, `email_client`, `email`, `project_title`, `project_description`
+The application is still in early stages and came about as a means to bridge gaps to allow smaller conventions to have a more responsive, scalable and modular infrastructure.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 ### Built With
-
+* [![Java][Java]][Java-url]
+<img height="32" width="32" src="https://unpkg.com/simple-icons@v11/icons/thymeleaf.svg" />
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
 * [![Vue][Vue.js]][Vue-url]
@@ -204,6 +182,7 @@ Project Link: [https://github.com/mriffey1/ConventionWebApp](https://github.com/
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/mriffey1/ConventionWebApp.svg?style=for-the-badge
+[Java]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white
 [contributors-url]: https://github.com/mriffey1/ConventionWebApp/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/mriffey1/ConventionWebApp.svg?style=for-the-badge
 [forks-url]: https://github.com/mriffey1/ConventionWebApp/network/members
