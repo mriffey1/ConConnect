@@ -11,7 +11,7 @@
 
 <h3 align="center">Spring Boot Convention App</h3>
 
-  <p align="center">
+  <p align="justify">
     Creation of Spring Boot web application utilitizing Java. The purpose of this application is to create an open-source modular option for small conventions (such as comic conventions, gaming conventions, sci-fi, etc). 
   
 </div>
@@ -56,6 +56,8 @@ The application is still in early stages and came about as a means to bridge gap
 
 
 ### Built With
+
+
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F.svg?style=for-the-badge&logo=Spring-Boot&logoColor=white)
@@ -114,7 +116,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
  -->
 
 
-<!-- ROADMAP -->
+<!-- ROADMAP
 ## Roadmap
 
 - [ ] Feature 1
@@ -123,7 +125,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
     - [ ] Nested Feature
 
 
-
+ -->
 <!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
