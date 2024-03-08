@@ -17,7 +17,6 @@ public class UserServiceImpl implements UserService {
     public User createUser(String username, String password, String email) throws ExecutionException, InterruptedException {
         // Check if username is available
         if (userRepository.isUsernameExists(username)) {
-
             throw new IllegalArgumentException("Username already exists");
         }
 

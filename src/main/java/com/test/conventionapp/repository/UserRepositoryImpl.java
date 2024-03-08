@@ -32,7 +32,6 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean isUsernameExists(String username) throws ExecutionException, InterruptedException {
-
          DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(username);
          CompletableFuture<DataSnapshot> future = new CompletableFuture<>();
          userRef.addListenerForSingleValueEvent(new ValueEventListener() {

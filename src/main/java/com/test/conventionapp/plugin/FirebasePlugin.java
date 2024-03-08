@@ -16,15 +16,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 public class FirebasePlugin implements Database {
-
+    private final AtomicInteger userIdCounter = new AtomicInteger(1);
     private final Logger logger = LoggerFactory.getLogger(FirebasePlugin.class);
     private final BCryptPasswordEncoder passwordEncoder;
 
     private DatabaseReference databaseReference;
-
 
     public FirebasePlugin(BCryptPasswordEncoder passwordEncoder) {
         try {
@@ -48,6 +48,7 @@ public class FirebasePlugin implements Database {
     @Override
     public void saveUser(User user) {
         // Hash the password before saving
+        String userId = generateUserId();
         String hashedPassword = passwordEncoder.encode(user.getPasswordHash());
 
         Map<String, Object> userData = new HashMap<>();
@@ -56,6 +57,11 @@ public class FirebasePlugin implements Database {
         userData.put("email", user.getEmail());
 
         // Save user data to the Realtime Database under "Users" node
-        databaseReference.child(user.getUsername()).setValueAsync(userData);
+        databaseReference.child(userId).setValueAsync(userData);
+    }
+    private String generateUserId() {
+        // Generate a 5-digit auto-incrementing number
+        return String.format("%06d", userIdCounter.getAndIncrement());
     }
 }
+

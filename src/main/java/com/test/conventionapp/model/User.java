@@ -6,8 +6,6 @@ public class User {
     private String passwordHash; // Store the hashed password instead of plain text
     private String email;
 
-
-
     public String getUsername() {
         return username;
     }
@@ -23,7 +21,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     public String getPasswordHash() {
         return passwordHash;
