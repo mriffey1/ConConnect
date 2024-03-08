@@ -1,7 +1,6 @@
 <a name="readme-top"></a>
 
 
-<style>details summary > * {  display: inline; }</style>
 <div align="center">
 
 [![Contributors][contributors-shield]][contributors-url] [![LinkedIn][linkedin-shield]][linkedin-url]
@@ -18,7 +17,7 @@
 <br>
 <details>
 <summary>
-<h3>Project Roadmap</h3>
+Project Roadmap
 </summary>
 
 ### Project Roadmap
