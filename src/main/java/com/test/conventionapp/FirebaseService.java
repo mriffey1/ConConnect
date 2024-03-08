@@ -5,6 +5,8 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -15,9 +17,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Service class for interacting with Firebase Realtime Database.
+ */
 @Service
 public class FirebaseService {
-
+    private static final Logger logger = LoggerFactory.getLogger(FirebaseService.class);
+    /**
+     * Initializes FirebaseApp with the provided credentials and database URL.
+     */
     @PostConstruct
     public void initialize() {
         try {
@@ -31,11 +39,16 @@ public class FirebaseService {
 
             FirebaseApp.initializeApp(options);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error occurred", e);
         }
     }
 
-    public CompletableFuture<List<Map<String, Object>>> geteventsDataWithAnimals() {
+    /**
+     * Retrieves event data along with animals asynchronously from the Firebase Realtime Database.
+     *
+     * @return A CompletableFuture containing a list of maps representing event data with animals.
+     */
+    public CompletableFuture<List<Map<String, Object>>> getEventsDataWithAnimals() {
         CompletableFuture<List<Map<String, Object>>> future = new CompletableFuture<>();
 
         DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("Events");
@@ -50,7 +63,7 @@ public class FirebaseService {
                 for (DataSnapshot eventSnapshot : eventsSnapshot.getChildren()) {
                     String eventId = eventSnapshot.getKey();
                     Map<String, Object> eventData = eventSnapshot
-                            .getValue(new GenericTypeIndicator<Map<String, Object>>() {
+                            .getValue(new GenericTypeIndicator<>() {
                             });
                     eventData.put("eventId", eventId);
                     eventsData.add(eventData);
@@ -58,6 +71,7 @@ public class FirebaseService {
                 future.complete(eventsData);
 
             }
+
             @Override
             public void onCancelled(DatabaseError eventsError) {
                 System.out.println("The read failed for Events: " + eventsError.getCode());
