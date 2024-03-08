@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 
-
+<style>details summary > * {  display: inline; }</style>
 <div align="center">
 
 [![Contributors][contributors-shield]][contributors-url] [![LinkedIn][linkedin-shield]][linkedin-url]
@@ -11,52 +11,35 @@
 
 <h3 align="center">Spring Boot Convention App</h3>
 
-  <p align="justify">
-    Creation of Spring Boot web application utilitizing Java. The purpose of this application is to create an open-source modular option for small conventions (such as comic conventions, gaming conventions, sci-fi, etc). 
-  
+  <div align="justify">
+    Creation of Spring Boot web application utilizing Java. The purpose of this application is to create an open-source modular option for small conventions (such as comic conventions, gaming conventions, sci-fi, etc).
 </div>
 
-
-
-<!-- TABLE OF CONTENTS 
+<br>
 <details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
+<summary>
+<h3>Project Roadmap</h3>
+</summary>
+
+### Project Roadmap
+
+#### Introduction
+This section documents the roadmap and including initial features, plugins and any additional add-ons in the works.
+
+#### Overall Vision
+The goal is to create an open-sourced modular convention application with plug-ins for conventions and award sites.
+
+#### Current Status
+- In Early Development (<i>as of March 8th, 2024</i>)
+
+#### Planned Features
+- [ ] Plugins
+  - [ ] Database
+  - [ ] Events
+  - [ ] Awards
 </details>
--->
-
-
-<!-- ABOUT THE PROJECT 
-## About The Project
-
-The application is still in early stages and came about as a means to bridge gaps to allow smaller conventions to have a more responsive, scalable and modular infrastructure.
-
-<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
-
-
 
 ### Built With
-
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white)
@@ -67,120 +50,8 @@ The application is still in early stages and came about as a means to bridge gap
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=HTML5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6.svg?style=for-the-badge&logo=CSS3&logoColor=white)
-<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
-
-<!-- GETTING STARTED
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/mriffey1/ConventionWebApp.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!-- USAGE EXAMPLES
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
- -->
-
-
-<!-- ROADMAP
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-
- -->
-<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
-
-
-
-<!-- CONTRIBUTING 
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
--->
-
-<!-- LICENSE 
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
--->
-
-<!-- CONTACT 
-## Contact
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/mriffey1/ConventionWebApp](https://github.com/mriffey1/ConventionWebApp)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!-- ACKNOWLEDGMENTS 
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
--->
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/mriffey1/ConventionWebApp.svg?style=for-the-badge
 [Java]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white
 [contributors-url]: https://github.com/mriffey1/ConventionWebApp/graphs/contributors
