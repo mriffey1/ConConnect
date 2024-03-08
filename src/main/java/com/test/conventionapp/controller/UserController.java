@@ -21,8 +21,8 @@ public class UserController {
     }
 
     @PostMapping("/createUser")
-    public String createUser(@RequestParam String username, @RequestParam String password) throws ExecutionException, InterruptedException {
-        userService.createUser(username, password);
+    public String createUser(@RequestParam String username, @RequestParam String password, @RequestParam String email) throws ExecutionException, InterruptedException {
+        userService.createUser(username, password, email);
         return "redirect:/login"; // Redirect to login page after user creation
     }
 }

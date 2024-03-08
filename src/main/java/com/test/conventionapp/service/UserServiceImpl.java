@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User createUser(String username, String password) throws ExecutionException, InterruptedException {
+    public User createUser(String username, String password, String email) throws ExecutionException, InterruptedException {
         // Check if username is available
         if (userRepository.isUsernameExists(username)) {
 
@@ -24,9 +24,10 @@ public class UserServiceImpl implements UserService {
         // Proceed with user creation if username is available
         User user = new User();
         user.setUsername(username);
+        user.setEmail(email);
 
         // Save user to Firebase Realtime Database
-        userRepository.save(user, password);
+        userRepository.save(user, password, email);
 
         return user;
     }

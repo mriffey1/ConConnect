@@ -38,7 +38,7 @@ public class FirebasePlugin implements Database {
             FirebaseApp.initializeApp(options);
 
             databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-//            firebaseAuth = FirebaseAuth.getInstance();
+
         } catch (IOException e) {
             logger.error("Error occurred while initializing FirebaseApp", e);
         }
@@ -49,19 +49,11 @@ public class FirebasePlugin implements Database {
     public void saveUser(User user) {
         // Hash the password before saving
         String hashedPassword = passwordEncoder.encode(user.getPasswordHash());
-//
-//            UserRecord.CreateRequest request = new UserRecord.CreateRequest()
-//                    .setUid(user.getUsername())
-//                    .setEmail(user.getUsername() + "@example.com")
-//                    .setPassword(hashedPassword) // Use the hashed password here
-//                    .setDisplayName(user.getUsername());
-//
-////            firebaseAuth.createUser(request);
 
-        // Convert User object to a Map
         Map<String, Object> userData = new HashMap<>();
         userData.put("username", user.getUsername());
         userData.put("password", hashedPassword); // Save hashed password to database
+        userData.put("email", user.getEmail());
 
         // Save user data to the Realtime Database under "Users" node
         databaseReference.child(user.getUsername()).setValueAsync(userData);

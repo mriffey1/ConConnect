@@ -22,7 +22,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void save(User user, String password) {
+    public void save(User user, String password, String email) {
         // Hash and set the password before saving
         String hashedPassword = passwordEncoder.encode(password);
         user.setPasswordHash(hashedPassword);
