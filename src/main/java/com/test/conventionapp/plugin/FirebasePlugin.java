@@ -3,8 +3,7 @@ package com.test.conventionapp.plugin;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.*;
 import com.test.conventionapp.model.User;
 import com.test.conventionapp.repository.Database;
 import org.slf4j.Logger;
@@ -39,6 +38,22 @@ public class FirebasePlugin implements Database {
 
             databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
+            // Retrieve the last used user ID from the database and initialize userIdCounter accordingly
+            databaseReference.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        String lastUserId = snapshot.getKey();
+                        userIdCounter.set(Integer.parseInt(lastUserId) + 1);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    logger.error("Error occurred while retrieving last user ID from database", databaseError.toException());
+                }
+            });
+
         } catch (IOException e) {
             logger.error("Error occurred while initializing FirebaseApp", e);
         }
@@ -59,9 +74,9 @@ public class FirebasePlugin implements Database {
         // Save user data to the Realtime Database under "Users" node
         databaseReference.child(userId).setValueAsync(userData);
     }
+
     private String generateUserId() {
         // Generate a 5-digit auto-incrementing number
         return String.format("%06d", userIdCounter.getAndIncrement());
     }
 }
-
