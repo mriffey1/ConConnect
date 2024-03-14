@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Events Data</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
-    
+
 </head>
 <body>
     <div th:include="~{fragments/navigation :: navigation}"></div>
@@ -35,7 +35,7 @@
                         <div class="bottom">bottom</div>
                     </td>
                     <td th:text="${event['ticketAvail']}"></td>
-                    
+
                 </tr>
             </tbody>
         </table>
@@ -44,16 +44,16 @@
         <p>Loading...</p>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.1.0/tablesort.min.js"></script>
-    
+
     <script>
         function onPageReady() {
             // Documentation: http://tristen.ca/tablesort/conventionapp/
             new Tablesort(document.getElementById('EventsTable'));
           }
-          
+
           // Run the above function when the page is loaded & ready
           document.addEventListener('DOMContentLoaded', onPageReady, false);
-          
+
     </script>
 </body>
 </html>

@@ -31,20 +31,31 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public boolean isUsernameExists(String username) throws ExecutionException, InterruptedException {
-         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(username);
-         CompletableFuture<DataSnapshot> future = new CompletableFuture<>();
-         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-             @Override
-             public void onDataChange(DataSnapshot dataSnapshot) {
-                 future.complete(dataSnapshot);
-             }
+    public boolean isUsernameExists(String username, String email) throws ExecutionException, InterruptedException {
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("Users");
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
 
-             @Override
-             public void onCancelled(DatabaseError databaseError) {
-                 future.completeExceptionally(databaseError.toException());
-             }
-         });
-         return future.get().exists();
+        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean exists = false;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User user = snapshot.getValue(User.class);
+                    if (user != null && (user.getUsername().equalsIgnoreCase(username) || user.getEmail().equalsIgnoreCase(email))) {
+                        exists = true;
+                        break;
+                    }
+                }
+                future.complete(exists);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                future.completeExceptionally(databaseError.toException());
+            }
+        });
+
+        return future.get();
     }
+
 }
