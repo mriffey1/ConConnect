@@ -15,6 +15,9 @@
     Creation of Spring Boot web application utilizing Java. The purpose of this application is to create an open-source modular option for small conventions (such as comic conventions, gaming conventions, sci-fi, etc).
 </div>
 
+### Current Status
+- In Early Development (<i>as of March 8th, 2024</i>)
+
 <br>
 <details>
 <summary>
@@ -29,11 +32,7 @@ This section documents the roadmap and including initial features, plugins and a
 #### Overall Vision
 The goal is to create an open-sourced modular convention application with plug-ins for conventions and award sites.
 
-#### Current Status
-- In Early Development (<i>as of March 8th, 2024</i>)
-
 #### Planned Features
-
 <details><summary>User Registration</summary>
 
 - [X] User Creation
@@ -43,7 +42,6 @@ The goal is to create an open-sourced modular convention application with plug-i
 - [ ] User Roles
 
 </details>
-
 
 <details><summary>Plugins</summary>
 
@@ -57,7 +55,6 @@ The goal is to create an open-sourced modular convention application with plug-i
 - [ ] Awards
 
 </details>
-
 </details>
 
 ### Built With
