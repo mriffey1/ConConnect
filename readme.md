@@ -32,10 +32,31 @@ The goal is to create an open-sourced modular convention application with plug-i
 - In Early Development (<i>as of March 8th, 2024</i>)
 
 #### Planned Features
-- [ ] Plugins
-  - [ ] Database
-  - [ ] Events
-  - [ ] Awards
+
+<details><summary>User Registration</summary>
+
+- [X] User Creation
+- [ ] User Login
+- [X] User Password Encryption
+- [ ] User Profile
+- [ ] User Roles
+
+</details>
+
+
+<details><summary>Plugins</summary>
+
+- [ ] Database
+  - [ ] Firebase
+  - [ ] MySQL
+- [ ] Events
+  - [ ] Create Events
+  - [ ] Modify Events
+  - [ ] 
+- [ ] Awards
+
+</details>
+
 </details>
 
 ### Built With
