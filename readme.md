@@ -1,7 +1,6 @@
 <a name="readme-top"></a>
 
 
-<style>details summary > * {  display: inline; }</style>
 <div align="center">
 
 [![Contributors][contributors-shield]][contributors-url] [![LinkedIn][linkedin-shield]][linkedin-url]
