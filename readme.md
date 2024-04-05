@@ -51,7 +51,9 @@ The goal is to create an open-sourced modular convention application with plug-i
 - [ ] Events
   - [ ] Create Events
   - [ ] Modify Events
-  - [ ] 
+  - [ ] Delete Events
+  - [ ] Electronic QR Codes
+  - [ ] Paper Tickets
 - [ ] Awards
 
 </details>
