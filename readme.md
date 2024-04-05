@@ -18,6 +18,8 @@
 - In Early Development (<i>as of March 8th, 2024</i>)
 
 
+### Project Roadmap
+This section details the current (and not exhaustive) list of planned features. The core concept is to allow easy setup with scalability without needing to understand the inner workings. 
 
 <details>
 <summary>
