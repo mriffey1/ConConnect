@@ -32,11 +32,6 @@ The goal is to create an open-sourced modular convention application with plug-i
 </div>
 <br>
 
-<details>
-<summary>
-- Project Roadmap
-</summary>
-
 
 #### Planned Features
 <details><summary>User Registration</summary>
@@ -79,7 +74,6 @@ The goal is to create an open-sourced modular convention application with plug-i
 
 - [ ] TBD
 
-</details>
 </details>
 
 ### Built With
