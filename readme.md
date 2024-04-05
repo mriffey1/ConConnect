@@ -14,6 +14,8 @@
     Creation of Spring Boot web application utilizing Java. The purpose of this application is to create an open-source modular option for small conventions (such as comic conventions, gaming conventions, sci-fi, etc).
 </div>
 
+<hr>
+
 ### Current Status
 - In Early Development (<i>as of March 8th, 2024</i>)
 
