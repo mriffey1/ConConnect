@@ -43,20 +43,35 @@ The goal is to create an open-sourced modular convention application with plug-i
 
 </details>
 
-<details><summary>Plugins</summary>
+<details><summary>Database</summary>
 
 - [ ] Database
   - [ ] Firebase
   - [ ] MySQL
-- [ ] Events
-  - [ ] Create Events
-  - [ ] Modify Events
-  - [ ] Delete Events
-  - [ ] Electronic QR Codes
-  - [ ] Paper Tickets
-- [ ] Exhibitors
-- [ ] Awards
 
+</details>
+
+
+<details><summary>Events</summary>
+
+- [ ] Create Events
+- [ ] Modify Events
+- [ ] Delete Events
+- [ ] Electronic QR Codes
+- [ ] Paper Tickets
+
+</details>
+ 
+<details><summary>Exhibtors</summary>
+
+- [ ] TBD
+
+</details>
+
+
+
+<details><summary>Awards</summary>
+- [ ] TBD
 </details>
 </details>
 
