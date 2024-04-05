@@ -80,6 +80,12 @@ The goal is to create an open-sourced modular convention application with plug-i
 
 <hr>
 
+#### How can I help?
+<div align="justify">
+If you would like to contribute or provide feedback: I will be setting up a method to contact me.</div>
+
+<hr>
+
 ### Built With
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
@@ -93,9 +99,7 @@ The goal is to create an open-sourced modular convention application with plug-i
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6.svg?style=for-the-badge&logo=CSS3&logoColor=white)
 
 
-#### How can I help?
-<div align="justify">
-If you would like to contribute or provide feedback: I will be setting up a method to contact me.</div>
+
 
 [contributors-shield]: https://img.shields.io/github/contributors/mriffey1/ConventionWebApp.svg?style=for-the-badge
 [Java]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white
