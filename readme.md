@@ -35,19 +35,18 @@ The goal is to create an open-sourced modular convention application with plug-i
 #### Planned Features
 <details><summary>User Registration</summary>
 
-  - [X] User Creation
-  - [ ] User Login
-  - [X] User Password Encryption
-  - [ ] User Profile
-  - [ ] User Roles
+- [X] User Creation
+- [ ] User Login
+- [X] User Password Encryption
+- [ ] User Profile
+- [ ] User Roles
 
 </details>
 
 <details><summary>Database</summary>
 
-- [ ] Database
-  - [ ] Firebase
-  - [ ] MySQL
+- [ ] Firebase
+- [ ] MySQL
 
 </details>
 
@@ -71,7 +70,9 @@ The goal is to create an open-sourced modular convention application with plug-i
 
 
 <details><summary>Awards</summary>
+
 - [ ] TBD
+
 </details>
 </details>
 
