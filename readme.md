@@ -30,7 +30,6 @@ This section documents the roadmap and including initial features, plugins and a
 The goal is to create an open-sourced modular convention application with plug-ins for conventions and award sites.
  
 </div>
-<br>
 
 
 #### Planned Features
