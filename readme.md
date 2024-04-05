@@ -20,7 +20,14 @@
 
 ### Project Roadmap
 <div align="justify">
-This section details the current (and not exhaustive) list of planned features. The core concept is to allow easy setup with scalability without needing to understand the inner workings. 
+This section details the current (and not exhaustive) list of planned features. The core concept is to allow easy setup with scalability without needing to understand the inner workings.
+
+#### Introduction
+This section documents the roadmap and including initial features, plugins and any additional add-ons in the works.
+
+#### Overall Vision
+The goal is to create an open-sourced modular convention application with plug-ins for conventions and award sites.
+ 
 </div>
 <br>
 
@@ -29,13 +36,6 @@ This section details the current (and not exhaustive) list of planned features. 
 - Project Roadmap
 </summary>
 
-### Project Roadmap
-
-#### Introduction
-This section documents the roadmap and including initial features, plugins and any additional add-ons in the works.
-
-#### Overall Vision
-The goal is to create an open-sourced modular convention application with plug-ins for conventions and award sites.
 
 #### Planned Features
 <details><summary>User Registration</summary>
