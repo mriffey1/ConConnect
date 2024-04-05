@@ -26,7 +26,7 @@ This section details the current (and not exhaustive) list of planned features. 
 
 <details>
 <summary>
-Project Roadmap
+- Project Roadmap
 </summary>
 
 ### Project Roadmap
