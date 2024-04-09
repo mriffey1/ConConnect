@@ -30,10 +30,6 @@ This section documents the roadmap and including initial features, plugins and a
 
 #### Overall Vision
 The goal is to create an open-sourced modular convention application with plug-ins for conventions and award sites.
- 
-</div>
-
-<hr>
 
 </div>
 
@@ -67,28 +63,6 @@ The goal is to create an open-sourced modular convention application with plug-i
 - [ ] Paper Tickets
 
 </details>
- 
-<details><summary>Exhibtors</summary>
-
-- [ ] TBD
-
-</details>
-
-
-
-<details><summary>Awards</summary>
-
-- [ ] TBD
-
-</details>
-
-<hr>
-
-#### How can I help?
-<div align="justify">
-If you would like to contribute or provide feedback: I will be setting up a method to contact me.</div>
-
-<hr>
 
 <details><summary>Exhibitors</summary>
 
