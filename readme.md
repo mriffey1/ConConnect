@@ -35,6 +35,10 @@ The goal is to create an open-sourced modular convention application with plug-i
 
 <hr>
 
+</div>
+
+<hr>
+
 #### Planned Features
 <details><summary>User Registration</summary>
 
@@ -75,6 +79,32 @@ The goal is to create an open-sourced modular convention application with plug-i
 <details><summary>Awards</summary>
 
 - [ ] TBD
+
+</details>
+
+<hr>
+
+#### How can I help?
+<div align="justify">
+If you would like to contribute or provide feedback: I will be setting up a method to contact me.</div>
+
+<hr>
+
+<details><summary>Exhibitors</summary>
+
+- [ ] Automated QR Code Creation
+- [ ] QR Code Scanner
+- [ ] Exhibitor Profile
+
+</details>
+
+
+
+<details><summary>Awards</summary>
+
+- [ ] Categories
+- [ ] Nominations
+- [ ] Voting
 
 </details>
 
