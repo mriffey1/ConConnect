@@ -14,23 +14,26 @@
     Creation of Spring Boot web application utilizing Java. The purpose of this application is to create an open-source modular option for small conventions (such as comic conventions, gaming conventions, sci-fi, etc).
 </div>
 
+<hr>
+
 ### Current Status
 - In Early Development (<i>as of March 8th, 2024</i>)
 
-
-
-<details>
-<summary>
-Project Roadmap
-</summary>
+<hr>
 
 ### Project Roadmap
+<div align="justify">
+This section details the current (and not exhaustive) list of planned features. The core concept is to allow easy setup with scalability without needing to understand the inner workings.
 
 #### Introduction
 This section documents the roadmap and including initial features, plugins and any additional add-ons in the works.
 
 #### Overall Vision
 The goal is to create an open-sourced modular convention application with plug-ins for conventions and award sites.
+
+</div>
+
+<hr>
 
 #### Planned Features
 <details><summary>User Registration</summary>
@@ -43,19 +46,49 @@ The goal is to create an open-sourced modular convention application with plug-i
 
 </details>
 
-<details><summary>Plugins</summary>
+<details><summary>Database</summary>
 
-- [ ] Database
-  - [ ] Firebase
-  - [ ] MySQL
-- [ ] Events
-  - [ ] Create Events
-  - [ ] Modify Events
-  - [ ] 
-- [ ] Awards
+- [ ] Firebase
+- [ ] MySQL
 
 </details>
+
+
+<details><summary>Events</summary>
+
+- [ ] Create Events
+- [ ] Modify Events
+- [ ] Delete Events
+- [ ] Electronic QR Codes
+- [ ] Paper Tickets
+
 </details>
+
+<details><summary>Exhibitors</summary>
+
+- [ ] Automated QR Code Creation
+- [ ] QR Code Scanner
+- [ ] Exhibitor Profile
+
+</details>
+
+
+
+<details><summary>Awards</summary>
+
+- [ ] Categories
+- [ ] Nominations
+- [ ] Voting
+
+</details>
+
+<hr>
+
+#### How can I help?
+<div align="justify">
+If you would like to contribute or provide feedback: I will be setting up a method to contact me.</div>
+
+<hr>
 
 ### Built With
 
@@ -68,6 +101,8 @@ The goal is to create an open-sourced modular convention application with plug-i
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=HTML5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6.svg?style=for-the-badge&logo=CSS3&logoColor=white)
+
+
 
 
 [contributors-shield]: https://img.shields.io/github/contributors/mriffey1/ConventionWebApp.svg?style=for-the-badge
