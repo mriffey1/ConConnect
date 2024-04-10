@@ -6,12 +6,13 @@
 [![Contributors][contributors-shield]][contributors-url] [![LinkedIn][linkedin-shield]][linkedin-url]
 
 </div>
+<div align="center">
+
+![conconnect_logo.png](src%2Fmain%2Fresources%2Fstatic%2Fconconnect_logo.png)
+<br><i>The Modular Convention Platform</i>
+</div>
 
 
-<h1 align="center">ConConnect</h1>
-<div align="center"><i>The Modular Convention Platform</i></div>
-
-<br>
 
   <div align="justify">
     Creation of Spring Boot web application utilizing Java. The purpose of this application is to create an open-source modular option for small conventions (such as comic conventions, gaming conventions, sci-fi, etc).
