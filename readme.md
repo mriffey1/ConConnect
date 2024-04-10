@@ -92,8 +92,9 @@ The goal is to create an open-sourced modular convention application with plug-i
 
 #### How can I help?
 <div align="justify">
-If you would like to contribute or provide feedback: I will be setting up a method to contact me.</div>
+If you would like to contribute or provide feedback: please join the discord channel below.</div>
 
+<a href="https://discord.gg/32TcwgbtrY" target="_blank"><img height="60" width="60" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg" /></a>
 <hr>
 
 ### Built With
