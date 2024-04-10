@@ -8,7 +8,10 @@
 </div>
 
 
-<h3 align="center">Spring Boot Convention App</h3>
+<h1 align="center">ConConnect</h1>
+<div align="center"><i>The Modular Convention Platform</i></div>
+
+<br>
 
   <div align="justify">
     Creation of Spring Boot web application utilizing Java. The purpose of this application is to create an open-source modular option for small conventions (such as comic conventions, gaming conventions, sci-fi, etc).
@@ -42,7 +45,10 @@ The goal is to create an open-sourced modular convention application with plug-i
 - [ ] User Login
 - [X] User Password Encryption
 - [ ] User Profile
+  - [ ] Profile landing page
 - [ ] User Roles
+  - [ ] Add custom roles
+  - [ ] Set permissions of custom roles
 
 </details>
 
