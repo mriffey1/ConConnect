@@ -30,7 +30,6 @@ th, td {
     background-color: #bebebe;
 }
 .top{
-	
     border-bottom: 1px solid #000;
 }
 
@@ -45,7 +44,6 @@ th, td {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 30%;
-    
     opacity: 0.05;
     z-index: 1; /* Ensure the pseudo-element stays behind the row content */
 }
@@ -57,16 +55,11 @@ th, td {
     display: flex;
     justify-content: center;
     align-items: center;
-   
 }
-
-
-
 
 pre {
     font-family: 'Roboto', sans-serif;
 }
-
 
 .max-width {
     max-width: 75%;
@@ -102,16 +95,9 @@ h1 {
 }
 
 
-
-
-
-
-
 p {
     font-family: sans-serif;
 }
-
-
 
 .menu-container {
     position: fixed;
@@ -150,7 +136,6 @@ p {
 
 .nav-bar {
     margin: 0;
-    
 }
 
 ul {
