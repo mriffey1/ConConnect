@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="ConventionApp" type="Application" factoryName="Application">
+  <configuration default="false" name="ConConnect" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="com.test.conventionapp.conventionappApplication" />
     <module name="demo" />
     <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
