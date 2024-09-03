@@ -11,20 +11,22 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Fetch all history for all branches
 
-    - name: Set up Git
+    - name: Fetch main branch
       run: |
-        git config user.name "github-actions"
-        git config user.email "github-actions@github.com"
+        git fetch origin main:main
 
     - name: Get commit messages
       id: get_commits
       run: |
-        COMMIT_MESSAGES=$(git log origin/main..HEAD --pretty=format:"%h %s" --no-merges)
+        COMMIT_MESSAGES=$(git log main..HEAD --pretty=format:"%h %s" --no-merges)
         echo "commit_messages<<EOF" >> $GITHUB_ENV
         echo "$COMMIT_MESSAGES" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
+
 
     - name: Find existing pull request
       id: find_pr
