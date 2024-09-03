@@ -30,11 +30,13 @@ jobs:
         id: get_commit_bodies
         run: |
           commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" } 
-          {
-            if (body != "") {
-              printf body;
-            }
-          }')
+           {
+              body="";
+              # Print the entire commit body if it's not empty
+              if (body != "") {
+                printf "%s\n", body;
+              }
+            }')
           echo "Commit Bodies:"
           echo "$commit_bodies"  # Output the commit bodies to the log
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
