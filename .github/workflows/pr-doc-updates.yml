@@ -60,7 +60,7 @@ jobs:
       uses: peter-evans/create-pull-request@v7
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        branch: "doc-updates-to-main"
+        branch: "doc-updates"  # Use the existing doc-updates branch
         base: main
         title: "Pull Request from doc-updates"
         body: "${{ env.COMMIT_BODIES }}"
