@@ -34,7 +34,7 @@ jobs:
             body = $0  # Capture the entire body as a block
             # Print the entire commit body if it's not empty
             if (body !~ /^$/) {
-              print body
+              printf body;
             }
           }')
           echo "Commit Bodies:"
