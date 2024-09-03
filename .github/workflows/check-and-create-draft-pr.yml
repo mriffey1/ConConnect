@@ -23,6 +23,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Debug the PR data
+      run: echo "PR data: ${{ steps.find_pr.outputs.data }}"
+
     - name: Create a new pull request if not exists
       if: steps.find_pr.outputs.data == '[]'
       uses: peter-evans/create-pull-request@v5
