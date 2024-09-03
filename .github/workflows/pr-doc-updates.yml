@@ -29,9 +29,9 @@ jobs:
       - name: Get commit message bodies
         id: get_commit_bodies
         run: |
-          commit_bodies=$(git log --format=%B origin/main..origin/doc-updates)
+          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%H%n%s%n%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" } NF > 3 { printf "- [%s](https://github.com/${{ github.repository }}/commit/%s):\n", $1, $1; for (i=4; i<=NF; i++) printf "    - %s\n", $i }')
           echo "Commit Bodies:"
-          echo "$commit_bodies"  # Output the commit bodies to the log
+          echo "$commit_bodies"  # Output the filtered commit bodies to the log
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_bodies" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
