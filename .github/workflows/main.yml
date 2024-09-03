@@ -1,4 +1,4 @@
-name: Create PR with Commit Bodies
+name: Check and Create Draft PR
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - doc-updates
 
 jobs:
-  create_pr:
+  check_and_create_pr:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,27 +15,22 @@ jobs:
       with:
         fetch-depth: 0  # Fetch all history to ensure you have the full commit history
 
-    - name: Fetch main branch
-      run: git fetch origin main
+    - name: Find existing pull request
+      id: find_pr
+      uses: octokit/request-action@v2.3.1
+      with:
+        route: GET /repos/:owner/:repo/pulls?head=:owner:doc-updates&state=open
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Get commit message bodies
-      id: get_commit_bodies
-      run: |
-        commit_bodies=$(git log --format=%B origin/main..HEAD)
-        echo "Commit Bodies:"
-        echo "$commit_bodies"  # This will output the commit bodies to the log
-        echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
-        echo "$commit_bodies" >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
-
-    - name: Debug commit bodies environment variable
-      run: echo "${{ env.COMMIT_BODIES }}"  # Outputs the content of the COMMIT_BODIES variable
-
-    - name: Create a pull request
-      uses: peter-evans/create-pull-request@v7
+    - name: Create a new pull request if not exists
+      if: steps.find_pr.outputs.data == '[]'
+      uses: peter-evans/create-pull-request@v5
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        branch: "doc-updates-to-main"  # This will be the PR branch name
+        branch: doc-updates
         base: main
-        title: "Pull Request from doc-updates"
-        body: "${{ env.COMMIT_BODIES }}"
+        title: "Documentation Updates"
+        body: "This pull request includes documentation updates."
+        draft: true  # Create the PR in draft mode
+        labels: documentation  # Apply the 'documentation' label
