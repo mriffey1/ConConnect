@@ -39,7 +39,7 @@ jobs:
             for (i=2; i<=NF; i++) {
               if ($i !~ /\.yml$/ && $i !~ /^$/) {
                 if ($i ~ /^[^ ]+/) {
-                  files = files "  * " $i "\n";  # Capture changed files
+                  files = files "   " $i "\n";  # Capture changed files
                 }
                 include_commit=1;
               }
