@@ -27,12 +27,14 @@ jobs:
         echo "$COMMIT_MESSAGES" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
 
-
     - name: Find existing pull request
       id: find_pr
-      uses: octokit/request-action@v2.3.1
+      uses: octokit/request-action@v2
       with:
-        route: GET /repos/:owner/:repo/pulls?head=:owner:doc-updates&state=open
+        route: GET /repos/:repository/pulls
+        repository: ${{ github.repository }}
+        state: open
+        head: doc-updates
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -49,12 +51,18 @@ jobs:
         labels: |
           documentation
 
-    - name: Update existing PR description
+    - name: Update PR description
       if: steps.find_pr.outputs.data != '[]'
-      run: |
-        PR_NUMBER=$(echo '${{ steps.find_pr.outputs.data }}' | jq '.[0].number')
-        EXISTING_BODY=$(gh pr view $PR_NUMBER --json body --jq '.body')
-        NEW_BODY="$EXISTING_BODY\n\n**New Commits:**\n${{ env.commit_messages }}"
-        gh pr edit $PR_NUMBER --body "$NEW_BODY"
+      uses: actions/github-script@v4
+      with:
+        script: |
+          const pr = JSON.parse(`${{ steps.find_pr.outputs.data }}`)[0];
+          const newBody = `${pr.body}\n\n${{ env.COMMIT_BODIES }}`;
+          await github.pulls.update({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: pr.number,
+            body: newBody
+          });
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
