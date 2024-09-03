@@ -78,6 +78,7 @@ The goal is to create an open-sourced modular convention application with plugin
 
 <details><summary>Database</summary>
 
+
 - [ ] **Firebase Plugin**
 - [ ] **MySQL Plugin**
  
