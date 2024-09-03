@@ -29,17 +29,15 @@ jobs:
       - name: Get commit message bodies with hashes
         id: get_commit_bodies
         run: |
-          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%h%n%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
-            hash = $1  # Capture the short commit hash
-            body = ""  # Initialize an empty body variable
+            # Split the first line by space to separate the hash from the body
+            split($0, parts, " ")
+            hash = parts[1]
+            body = substr($0, length(hash) + 2)  # Capture the body after the hash
             
-            # Loop through the lines to extract the body, skipping the first line (which is the hash)
-            for (i=2; i<=NF; i++) {
-              if ($i !~ /^[[:space:]]*$/) {
-                body = body $i "\n"
-              }
-            }
+            # Remove leading spaces from body (if any)
+            sub(/^[ \t]+/, "", body)
             
             # Check if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
@@ -54,6 +52,7 @@ jobs:
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_bodies" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
 
 
 
