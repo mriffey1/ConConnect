@@ -15,10 +15,16 @@ jobs:
         with:
           fetch-depth: 0  # Fetch all history to ensure you have the full commit history
 
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
+
+      - name: Authenticate GitHub CLI
+        run: gh auth setup-git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Fetch all branches
-        run: |
-          git fetch origin main:main
-          git reset --hard main
+        run: git fetch --all
 
       - name: Get commit message bodies
         id: get_commit_bodies
@@ -32,37 +38,20 @@ jobs:
 
       - name: Find existing pull request
         id: find_pr
-        uses: octokit/request-action@v2.3.1
-        with:
-          route: GET /repos/${{ github.repository }}/pulls?state=open&head=${{ github.repository_owner }}:doc-updates
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pr=$(gh pr list --head doc-updates --state open --json number --jq '.[0].number')
+          echo "PR_NUMBER=$pr" >> $GITHUB_ENV
 
-      - name: Update PR description
-        if: steps.find_pr.outputs.data != '[]'
-        uses: actions/github-script@v4
-        with:
-          script: |
-            const pr = JSON.parse(`${{ steps.find_pr.outputs.data }}`)[0];
-            const newBody = `${pr.body}\n\n${{ env.COMMIT_BODIES }}`;
-            await github.pulls.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: pr.number,
-              body: newBody
-            });
+      - name: Update PR description if exists
+        if: env.PR_NUMBER != ''
+        run: |
+          gh pr edit $PR_NUMBER --body "${{ env.COMMIT_BODIES }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create a draft pull request if not exists
-        if: steps.find_pr.outputs.data == '[]'
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: doc-updates
-          base: main
-          title: "Draft Pull Request from doc-updates"
-          body: "${{ env.COMMIT_BODIES }}"
-          draft: true
+        if: env.PR_NUMBER == ''
+        run: |
+          gh pr create --base main --head doc-updates --title "Draft Pull Request from doc-updates" --body "${{ env.COMMIT_BODIES }}" --draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
