@@ -29,17 +29,17 @@ jobs:
       - name: Get commit message bodies
         id: get_commit_bodies
         run: |
-          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%H %s%n%b%n---END---" --name-only | awk 'BEGIN { RS="---END---"; FS="\n" } 
+          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%H%n%b%n---END---" --name-only | awk 'BEGIN { RS="---END---"; FS="\n" } 
           {
             full_hash=$1; 
             short_hash=substr($1, 1, 7);
             body="";
             include_commit=0;
-            for (i=3; i<=NF; i++) {
+            for (i=2; i<=NF; i++) {
               if ($i !~ /\.yml$/ && $i !~ /^$/) {
                 include_commit=1;
               }
-              if (i > 3 && $i !~ /^$/) {
+              if (i > 2 && $i !~ /^$/) {
                 body = body $i "\n";
               }
             }
