@@ -1,0 +1,39 @@
+name: Check and Create Draft PR
+
+on:
+  push:
+    branches:
+      - doc-updates
+
+jobs:
+  check_and_create_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history to ensure you have the full commit history
+
+    - name: Find existing pull request
+      id: find_pr
+      uses: octokit/request-action@v2.3.1
+      with:
+        route: GET /repos/:owner/:repo/pulls?head=:owner:doc-updates&state=open
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Debug the PR data
+      run: echo "PR data: ${{ steps.find_pr.outputs.data }}"
+
+    - name: Create a new pull request if not exists
+      if: steps.find_pr.outputs.data == '[]'
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: doc-updates
+        base: main
+        title: "Documentation Updates"
+        body: "This pull request includes documentation updates."
+        draft: true  # Create the PR in draft mode
+        labels: documentation  # Apply the 'documentation' label
