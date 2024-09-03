@@ -55,7 +55,9 @@ jobs:
               printf "[%s](https://github.com/${{ github.repository }}/commit/%s)\n", short_hash, full_hash;
               if (files != "") {
                 printf " %s", files;  # Print changed files
-              }
+              } else {
+                next; 
+          }
             }
           }')
           echo "Commit Bodies:"
