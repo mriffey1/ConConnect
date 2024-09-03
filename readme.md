@@ -12,7 +12,7 @@
 <br><i>The Modular Convention Platform</i>
 </div>
 
-  <div align="justify">
+  <div align="justify">a
     Creation of Spring Boot web application utilizing Java. The purpose of this application is to create an open-source modular option for small conventions (such as comic conventions, gaming conventions, sci-fi, etc).
 </div>
 <hr>
