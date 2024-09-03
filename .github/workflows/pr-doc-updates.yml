@@ -32,21 +32,20 @@ jobs:
           commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%H%n%b%n---END---" --name-only | awk 'BEGIN { RS="---END---"; FS="\n" } 
           {
             hash=$1; 
-            file="";
-            body="";
-            include_commit=0;
+            body=""; 
+            include_commit=1;
             for (i=2; i<=NF; i++) {
-              if ($i !~ /\.yml$/) {
-                file = $i;
-                include_commit=1;
+              if ($i ~ /\.yml$/) {
+                include_commit=0;
+                break;
               }
-              if (i > 2 && NF > 2) {
+              if (i == 2 && NF > 2) {
                 body = $i;
               }
-            }
+            } 
             if (include_commit && body != "") {
-              printf "* (%s) %s\n", hash, file;
-              printf "  ~ %s\n", body;
+              printf "* [%s](https://github.com/${{ github.repository }}/commit/%s)\n", hash, hash;
+              for (i=2; i<=NF; i++) if ($i !~ /\.yml$/) printf "  * %s\n", $i;
             }
           }')
           echo "Commit Bodies:"
