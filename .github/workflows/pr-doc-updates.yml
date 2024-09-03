@@ -31,15 +31,9 @@ jobs:
         run: |
           commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" } 
           {
-            body="";
-            for (i=1; i<=NF; i++) {
-              # Capture all lines in the commit body
-              if ($i !~ /^$/) {
-                body = body $i "\n";
-              }
-            }
+            body = $0;  # Capture the entire body as a block
             # Print the entire commit body if it's not empty
-            if (body != "") {
+            if (body !~ /^$/) {
               printf "%s\n", body;
             }
           }')
