@@ -31,8 +31,6 @@ jobs:
         run: |
           commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" } 
           {
-            body = $0 
-            # Print the entire commit body if it's not empty
             if (body != "") {
               printf body;
             }
