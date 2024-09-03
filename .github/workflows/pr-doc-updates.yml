@@ -35,7 +35,7 @@ jobs:
           route: GET /repos/:repository/pulls
           repository: ${{ github.repository }}
           state: open
-          head: doc-updates
+          head: main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -60,7 +60,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "doc-updates"  # Use the existing doc-updates branch
+          branch: "main"  # Use the existing doc-updates branch
           base: main
           title: "Draft Pull Request from doc-updates"
           body: "${{ env.COMMIT_BODIES }}"
