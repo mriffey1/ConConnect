@@ -1,0 +1,58 @@
+name: Auto-Create or Update PR for Documentation
+
+on:
+  push:
+    branches:
+      - doc-updates
+
+jobs:
+  create_or_update_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Git
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+
+    - name: Get commit messages
+      id: get_commits
+      run: |
+        COMMIT_MESSAGES=$(git log origin/main..HEAD --pretty=format:"%h %s" --no-merges)
+        echo "commit_messages<<EOF" >> $GITHUB_ENV
+        echo "$COMMIT_MESSAGES" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+
+    - name: Find existing pull request
+      id: find_pr
+      uses: octokit/request-action@v2.3.1
+      with:
+        route: GET /repos/:owner/:repo/pulls?head=:owner:doc-updates&state=open
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create or update PR
+      if: steps.find_pr.outputs.data == '[]'
+      uses: peter-evans/create-pull-request@v7
+      with:
+        commit-message: "Update documentation"
+        branch: doc-updates
+        title: "Documentation Updates"
+        body: |
+          **Associated Commits:**
+          ${{ env.commit_messages }}
+        labels: |
+          documentation
+
+    - name: Update existing PR description
+      if: steps.find_pr.outputs.data != '[]'
+      run: |
+        PR_NUMBER=$(echo '${{ steps.find_pr.outputs.data }}' | jq '.[0].number')
+        EXISTING_BODY=$(gh pr view $PR_NUMBER --json body --jq '.body')
+        NEW_BODY="$EXISTING_BODY\n\n**New Commits:**\n${{ env.commit_messages }}"
+        gh pr edit $PR_NUMBER --body "$NEW_BODY"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
