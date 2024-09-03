@@ -12,6 +12,11 @@ jobs:
     steps:
     - name: Checkout the code
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Fetch all history to ensure you have the full commit history
+
+    - name: Fetch main branch
+      run: git fetch origin main
 
     - name: Get commit message bodies
       id: get_commit_bodies
@@ -23,9 +28,4 @@ jobs:
 
     - name: Create a pull request
       uses: peter-evans/create-pull-request@v5
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        title: "Pull Request Title"
-        body: "${{ env.COMMIT_BODIES }}"
-        base: main
-        head: doc-updates
+     
