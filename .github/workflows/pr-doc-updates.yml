@@ -51,9 +51,9 @@ jobs:
                 body = body $i "\n";
               }
             }
-            if (include_commit && body != "" && files != "") {
-              printf "[%s](https://github.com/${{ github.repository }}/commit/%s)\n", short_hash, full_hash;
+            if (include_commit && body != "") {
               if (files != "") {
+                printf "[%s](https://github.com/${{ github.repository }}/commit/%s)\n", short_hash, full_hash;
                 printf " %s", files;  # Print changed files
               } else {
                 next; 
