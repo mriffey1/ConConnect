@@ -33,8 +33,9 @@ jobs:
           {
             hash = $1  # Capture the short commit hash
             body = substr($0, length(hash) + 2)  # Capture the entire body as a block, skipping the hash
-            # Print the commit hash and the commit body if the body is not empty
-            if (body !~ /^$/) {
+            
+            # Check if the body is not empty
+            if (body !~ /^[[:space:]]*$/) {
               print hash ": " body "<hr>"
             }
           }')
@@ -46,6 +47,7 @@ jobs:
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_bodies" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
 
 
       - name: Find existing pull request
