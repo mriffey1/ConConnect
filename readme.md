@@ -82,7 +82,7 @@ The goal is to create an open-sourced modular convention application with plugin
 - [ ] **MySQL Plugin**
 
 </details>
-
+ 
 <details><summary>Exhibitors</summary>
 
 - [ ] Automated QR Code Creation
