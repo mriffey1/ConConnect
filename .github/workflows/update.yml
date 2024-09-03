@@ -30,7 +30,7 @@ jobs:
 
     - name: Find existing pull request
       id: find_pr
-      uses: octokit/request-action@v2
+      uses: octokit/request-action@v2.3.1
       with:
         route: GET /repos/:repository/pulls
         repository: ${{ github.repository }}
