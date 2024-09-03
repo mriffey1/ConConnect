@@ -1,0 +1,31 @@
+name: Create PR with Commit Bodies
+
+on:
+  push:
+    branches:
+      - doc-updates
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v2
+
+    - name: Get commit message bodies
+      id: get_commit_bodies
+      run: |
+        commit_bodies=$(git log --format=%B origin/main..HEAD)
+        echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
+        echo "$commit_bodies" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+
+    - name: Create a pull request
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        title: "Pull Request Title"
+        body: "${{ env.COMMIT_BODIES }}"
+        base: main
+        head: doc-updates
