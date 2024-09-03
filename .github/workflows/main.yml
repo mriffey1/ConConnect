@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout the code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0  # Fetch all history to ensure you have the full commit history
 
@@ -32,7 +32,7 @@ jobs:
       run: echo "${{ env.COMMIT_BODIES }}"  # Outputs the content of the COMMIT_BODIES variable
 
     - name: Create a pull request
-      uses: peter-evans/create-pull-request@v5
+      uses: peter-evans/create-pull-request@v7
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         title: "Pull Request from doc-updates"
