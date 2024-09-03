@@ -21,7 +21,7 @@ jobs:
       - name: Authenticate GitHub CLI
         run: gh auth setup-git
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fetch all branches
         run: git fetch --all
@@ -41,17 +41,19 @@ jobs:
         run: |
           pr=$(gh pr list --head doc-updates --state open --json number --jq '.[0].number')
           echo "PR_NUMBER=$pr" >> $GITHUB_ENV
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update PR description if exists
         if: env.PR_NUMBER != ''
         run: |
           gh pr edit $PR_NUMBER --body "${{ env.COMMIT_BODIES }}"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create a draft pull request if not exists
         if: env.PR_NUMBER == ''
         run: |
           gh pr create --base main --head doc-updates --title "Draft Pull Request from doc-updates" --body "${{ env.COMMIT_BODIES }}" --draft
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
