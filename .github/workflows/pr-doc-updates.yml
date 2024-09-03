@@ -15,13 +15,13 @@ jobs:
         with:
           fetch-depth: 0  # Fetch all history to ensure you have the full commit history
 
-      - name: Fetch main branch
-        run: git fetch origin main
+      - name: Fetch all branches
+        run: git fetch --all
 
       - name: Get commit message bodies
         id: get_commit_bodies
         run: |
-          commit_bodies=$(git log --format=%B origin/main..HEAD)
+          commit_bodies=$(git log --format=%B origin/main..origin/doc-updates)
           echo "Commit Bodies:"
           echo "$commit_bodies"  # Output the commit bodies to the log
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
