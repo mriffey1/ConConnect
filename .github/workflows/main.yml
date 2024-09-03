@@ -22,10 +22,20 @@ jobs:
       id: get_commit_bodies
       run: |
         commit_bodies=$(git log --format=%B origin/main..HEAD)
+        echo "Commit Bodies:"
+        echo "$commit_bodies"  # This will output the commit bodies to the log
         echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
         echo "$commit_bodies" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
 
+    - name: Debug commit bodies environment variable
+      run: echo "${{ env.COMMIT_BODIES }}"  # Outputs the content of the COMMIT_BODIES variable
+
     - name: Create a pull request
       uses: peter-evans/create-pull-request@v5
-     
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        title: "Pull Request from doc-updates"
+        body: "${{ env.COMMIT_BODIES }}"
+        base: main
+        head: doc-updates
