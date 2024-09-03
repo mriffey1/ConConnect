@@ -57,7 +57,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: doc-updates
+          branch: main
           base: main
           title: "Draft Pull Request from doc-updates"
           body: "${{ env.COMMIT_BODIES }}"
