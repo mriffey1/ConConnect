@@ -43,7 +43,11 @@ jobs:
                 }
                 include_commit=1;
               }
-              if (i > 2 && $i !~ /^[^ ]+$/) {  # Exclude filenames from body
+              # Check for lines with multiple spaces and clean them
+              if (i > 2 && $i !~ /^[^ ]+$/ && $i ~ /  +/) {
+                gsub(/  +/, " ", $i);  # Replace multiple spaces with a single space
+                body = body $i "\n";
+              } else if (i > 2 && $i !~ /^[^ ]+$/) {
                 body = body $i "\n";
               }
             }
@@ -60,6 +64,7 @@ jobs:
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_bodies" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
 
       - name: Find existing pull request
         id: find_pr
