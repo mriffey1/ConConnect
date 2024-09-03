@@ -29,16 +29,19 @@ jobs:
       - name: Get commit message bodies
         id: get_commit_bodies
         run: |
-          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" } 
-           {
-              body="";
-              # Print the entire commit body if it's not empty
-              if (body != "") {
-                printf "%s\n", body;
-              }
-            }')
+         commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          {
+            body = $0  # Capture the entire body as a block
+            # Print the entire commit body if it's not empty
+            if (body !~ /^$/) {
+              print body
+            }
+          }')
+          
           echo "Commit Bodies:"
           echo "$commit_bodies"  # Output the commit bodies to the log
+          
+          # Save the commit bodies to the environment variable
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_bodies" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
