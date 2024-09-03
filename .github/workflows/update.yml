@@ -32,10 +32,7 @@ jobs:
       id: find_pr
       uses: octokit/request-action@v2.3.1
       with:
-        route: GET /repos/:repository/pulls
-        repository: ${{ github.repository }}
-        state: open
-        head: doc-updates
+        route: GET /repos/${{ github.repository }}/pulls?state=open&head=${{ github.repository_owner }}:doc-updates
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -44,14 +41,22 @@ jobs:
       uses: actions/github-script@v4
       with:
         script: |
-          const pr = JSON.parse(`${{ steps.find_pr.outputs.data }}`)[0];
-          const newBody = `${pr.body}\n\n${{ env.COMMIT_BODIES }}`;
-          await github.pulls.update({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            pull_number: pr.number,
-            body: newBody
-          });
+          try {
+            const pr = JSON.parse(`${{ steps.find_pr.outputs.data }}`)[0];
+            if (pr && pr.body) {
+              const newBody = `${pr.body}\n\n${{ env.COMMIT_BODIES }}`;
+              await github.pulls.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                body: newBody
+              });
+            } else {
+              core.setFailed('No valid pull request found or pull request body is empty.');
+            }
+          } catch (error) {
+            core.setFailed(`Failed to parse pull request data: ${error.message}`);
+          }
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -64,3 +69,5 @@ jobs:
         base: main
         title: "Pull Request from doc-updates"
         body: "${{ env.COMMIT_BODIES }}"
+        draft: true
+        labels: documentation
