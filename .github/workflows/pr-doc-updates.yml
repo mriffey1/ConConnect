@@ -32,7 +32,7 @@ jobs:
         id: find_pr
         uses: octokit/request-action@v2.3.1
         with:
-          route: GET /repos/:owner/:repo/pulls?head=:owner:doc-updates&state=open
+          route: GET /repos/${{ github.repository }}/pulls?state=open&head=${{ github.repository_owner }}:doc-updates
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
