@@ -10,57 +10,58 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout the code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0  # Fetch all history to ensure you have the full commit history
+      - name: Checkout the code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history to ensure you have the full commit history
 
-    - name: Fetch main branch
-      run: git fetch origin main
+      - name: Fetch main branch
+        run: git fetch origin main
 
-    - name: Get commit message bodies
-      id: get_commit_bodies
-      run: |
-        commit_bodies=$(git log --format=%B origin/main..HEAD)
-        echo "Commit Bodies:"
-        echo "$commit_bodies"  # Output the commit bodies to the log
-        echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
-        echo "$commit_bodies" >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
+      - name: Get commit message bodies
+        id: get_commit_bodies
+        run: |
+          commit_bodies=$(git log --format=%B origin/main..HEAD)
+          echo "Commit Bodies:"
+          echo "$commit_bodies"  # Output the commit bodies to the log
+          echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
+          echo "$commit_bodies" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
-    - name: Find existing pull request
-      id: find_pr
-      uses: octokit/request-action@v2.3.1
-      with:
-        route: GET /repos/:repository/pulls
-        repository: ${{ github.repository }}
-        state: open
-        head: doc-updates
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Find existing pull request
+        id: find_pr
+        uses: octokit/request-action@v2.3.1
+        with:
+          route: GET /repos/:repository/pulls
+          repository: ${{ github.repository }}
+          state: open
+          head: doc-updates
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Update PR description
-      if: steps.find_pr.outputs.data != '[]'
-      uses: actions/github-script@v4
-      with:
-        script: |
-          const pr = JSON.parse(`${{ steps.find_pr.outputs.data }}`)[0];
-          const newBody = `${pr.body}\n\n${{ env.COMMIT_BODIES }}`;
-          await github.pulls.update({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            pull_number: pr.number,
-            body: newBody
-          });
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update PR description
+        if: steps.find_pr.outputs.data != '[]'
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const pr = JSON.parse(`${{ steps.find_pr.outputs.data }}`)[0];
+            const newBody = `${pr.body}\n\n${{ env.COMMIT_BODIES }}`;
+            await github.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              body: newBody
+            });
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Create a new pull request if not exists
-      if: steps.find_pr.outputs.data == '[]'
-      uses: peter-evans/create-pull-request@v7
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        branch: "doc-updates"  # Use the existing doc-updates branch
-        base: main
-        title: "Pull Request from doc-updates"
-        body: "${{ env.COMMIT_BODIES }}"
+      - name: Create a draft pull request if not exists
+        if: steps.find_pr.outputs.data == '[]'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "doc-updates"  # Use the existing doc-updates branch
+          base: main
+          title: "Draft Pull Request from doc-updates"
+          body: "${{ env.COMMIT_BODIES }}"
+          draft: true  # Create the pull request as a draft
