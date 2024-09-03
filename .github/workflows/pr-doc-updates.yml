@@ -36,9 +36,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Update PR description
         if: steps.find_pr.outputs.data != '[]'
         uses: actions/github-script@v4
