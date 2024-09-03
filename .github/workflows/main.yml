@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - doc-updates
-  workflow_dispatch:  # Allows manual triggering from the GitHub UI
 
 jobs:
   create_pr:
@@ -13,9 +12,6 @@ jobs:
     steps:
     - name: Checkout the code
       uses: actions/checkout@v2
-
-    - name: Fetch all branches
-      run: git fetch --all
 
     - name: Get commit message bodies
       id: get_commit_bodies
@@ -29,7 +25,7 @@ jobs:
       uses: peter-evans/create-pull-request@v5
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        title: "Pull Request from doc-updates"
+        title: "Pull Request Title"
         body: "${{ env.COMMIT_BODIES }}"
         base: main
         head: doc-updates
