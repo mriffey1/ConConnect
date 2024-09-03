@@ -32,7 +32,14 @@ jobs:
           commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%h%n%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
             hash = $1  # Capture the short commit hash
-            body = substr($0, length(hash) + 2)  # Capture the entire body as a block, skipping the hash
+            body = ""  # Initialize an empty body variable
+            
+            # Loop through the lines to extract the body, skipping the first line (which is the hash)
+            for (i=2; i<=NF; i++) {
+              if ($i !~ /^[[:space:]]*$/) {
+                body = body $i "\n"
+              }
+            }
             
             # Check if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
@@ -47,6 +54,7 @@ jobs:
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_bodies" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
 
 
 
