@@ -34,17 +34,24 @@ jobs:
             full_hash=$1; 
             short_hash=substr($1, 1, 7);
             body="";
+            files="";
             include_commit=0;
             for (i=2; i<=NF; i++) {
               if ($i !~ /\.yml$/ && $i !~ /^$/) {
+                if ($i ~ /^[^ ]+/) {
+                  files = files "  * " $i "\n";  # Capture changed files
+                }
                 include_commit=1;
               }
-              if (i > 2 && $i !~ /^$/) {
+              if (i > 2 && $i !~ /^[^ ]+$/) {  # Exclude filenames from body
                 body = body $i "\n";
               }
             }
             if (include_commit && body != "") {
-              printf "[%s](https://github.com/${{ github.repository }}/commit/%s) \n", short_hash, full_hash;
+              printf "[%s](https://github.com/${{ github.repository }}/commit/%s)\n", short_hash, full_hash;
+              if (files != "") {
+                printf "%s", files;  # Print changed files
+              }
               printf "  * %s", body;
             }
           }')
