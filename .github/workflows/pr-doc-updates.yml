@@ -53,7 +53,9 @@ jobs:
             }
             if (include_commit && body != "") {
               printf "[%s](https://github.com/${{ github.repository }}/commit/%s)\n", short_hash, full_hash;
-              printf "  %s", body;
+              if (files != "") {
+                printf " %s", files;  # Print changed files
+              }
             }
           }')
           echo "Commit Bodies:"
