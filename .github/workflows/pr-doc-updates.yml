@@ -1,4 +1,4 @@
-name: Auto-Create or Update PR for Documentation
+name: Check and Create Draft PR
 
 on:
   push:
@@ -6,63 +6,34 @@ on:
       - doc-updates
 
 jobs:
-  create_or_update_pr:
+  check_and_create_pr:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - name: Checkout the code
+      uses: actions/checkout@v4
       with:
-        fetch-depth: 0  # Fetch all history for all branches
-
-    - name: Fetch main branch
-      run: |
-        git fetch origin main:main
-
-    - name: Get commit messages
-      id: get_commits
-      run: |
-        COMMIT_MESSAGES=$(git log main..HEAD --pretty=format:"%h %s" --no-merges)
-        echo "commit_messages<<EOF" >> $GITHUB_ENV
-        echo "$COMMIT_MESSAGES" >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
+        fetch-depth: 0  # Fetch all history to ensure you have the full commit history
 
     - name: Find existing pull request
       id: find_pr
       uses: octokit/request-action@v2.3.1
       with:
-        route: GET /repos/:repository/pulls
-        repository: ${{ github.repository }}
-        state: open
-        head: doc-updates
+        route: GET /repos/:owner/:repo/pulls?head=:owner:doc-updates&state=open
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Create or update PR
+    - name: Debug the PR data
+      run: echo "PR data: ${{ steps.find_pr.outputs.data }}"
+
+    - name: Create a new pull request if not exists
       if: steps.find_pr.outputs.data == '[]'
       uses: peter-evans/create-pull-request@v7
       with:
-        commit-message: "Update documentation"
+        token: ${{ secrets.GITHUB_TOKEN }}
         branch: doc-updates
+        base: main
         title: "Documentation Updates"
-        body: |
-          **Associated Commits:**
-          ${{ env.commit_messages }}
-        labels: |
-          documentation
-
-    - name: Update PR description
-      if: steps.find_pr.outputs.data != '[]'
-      uses: actions/github-script@v4
-      with:
-        script: |
-          const pr = JSON.parse(`${{ steps.find_pr.outputs.data }}`)[0];
-          const newBody = `${pr.body}\n\n${{ env.COMMIT_BODIES }}`;
-          await github.pulls.update({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            pull_number: pr.number,
-            body: newBody
-          });
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        body: "This pull request includes documentation updates."
+        draft: true  # Create the PR in draft mode
+        labels: documentation  # Apply the 'documentation' label
