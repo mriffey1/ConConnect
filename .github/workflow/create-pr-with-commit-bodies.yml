@@ -3,7 +3,8 @@ name: Create PR with Commit Bodies
 on:
   push:
     branches:
-      - doc-updates  # This ensures the workflow triggers on commits to doc-updates
+      - doc-updates
+  workflow_dispatch:  # Allows manual triggering from the GitHub UI
 
 jobs:
   create_pr:
