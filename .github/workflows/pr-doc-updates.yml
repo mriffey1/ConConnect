@@ -44,8 +44,8 @@ jobs:
               }
             }
             if (include_commit && body != "") {
-              printf "* [%s](https://github.com/${{ github.repository }}/commit/%s)\n", short_hash, full_hash;
-              printf "  ~ %s", body;
+              printf "[%s](https://github.com/${{ github.repository }}/commit/%s) \n", short_hash, full_hash;
+              printf "  * %s", body;
             }
           }')
           echo "Commit Bodies:"
