@@ -29,29 +29,25 @@ jobs:
       - name: Get commit message bodies
         id: get_commit_bodies
         run: |
-          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%H%n%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" } 
+          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" } 
           {
-            full_hash=$1; 
-            short_hash=substr($1, 1, 7);
             body="";
-            for (i=2; i<=NF; i++) {
-              # Add each line of the commit body to the body variable
-              if ($i !~ /^[^ ]+$/) {
+            for (i=1; i<=NF; i++) {
+              # Capture all lines in the commit body
+              if ($i !~ /^$/) {
                 body = body $i "\n";
               }
             }
-            # Check if body is non-empty before printing
+            # Print the entire commit body if it's not empty
             if (body != "") {
-              printf "[%s](https://github.com/${{ github.repository }}/commit/%s)\n", short_hash, full_hash;
-              printf "%s", body;
+              printf "%s\n", body;
             }
           }')
           echo "Commit Bodies:"
-          echo "$commit_bodies"  # Output the filtered commit bodies to the log
+          echo "$commit_bodies"  # Output the commit bodies to the log
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_bodies" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-
 
       - name: Find existing pull request
         id: find_pr
