@@ -30,44 +30,56 @@
 This section details the current (and not exhaustive) list of planned features. The core concept is to allow easy setup with scalability without needing to understand the inner workings.
 
 #### Introduction
-This section documents the roadmap and including initial features, plugins and any additional add-ons in the works.
+This section documents the roadmap, including initial features, plugins, and any additional add-ons in the works.
 
 #### Overall Vision
-The goal is to create an open-sourced modular convention application with plug-ins for conventions and award sites.
+The goal is to create an open-sourced modular convention application with plugins for conventions and award sites.
 
 </div>
 
 <hr>
 
-#### Planned Features
-<details><summary>User Registration</summary>
+#### Core Functionality
+<details><summary>User Registration and Management</summary>
 
-- [X] User Creation
-- [ ] User Login
-- [X] User Password Encryption
-- [ ] User Profile
+- [X] **User Registration**
+  - [X] User Creation
+  - [ ] User Login
+  - [X] User Password Encryption
+    - Custom Username: Check to ensure the username does not exist.
+    - Create user in the database.
+    - Hash password/security features.
+    - Include user data fields: First Name, Last Name, Pronouns, Email Address, Password (with confirmation), Mailing Address, Phone Number.
+    - Sign-up button to submit registration.
+- [ ] **User Profile Maintenance**
   - [ ] Profile landing page
-- [ ] User Roles
+  - Ability to change password, update pronouns, add/update profile picture.
+  - Update mailing address and phone number.
+- [ ] **User Roles**
   - [ ] Add custom roles
   - [ ] Set permissions of custom roles
+  - Dropdown with roles and associated permissions.
+
+</details>
+
+#### Plugin Features
+<details><summary>Events</summary>
+
+- [ ] **Electronic Event Tickets**: Attach electronic tickets to user badges.
+- [ ] **QR Codes for Event (Attendee)**: Generate and manage QR codes for electronic tickets.
+- [ ] **Printed Event Tickets**: Provide options for printing event tickets.
+- [ ] **QR Code Scanner for Event (Organizers)**: Dashboard for organizers to scan QR codes; ability to see who is still missing in real-time.
+- [ ] **Payment**: Integration with various payment systems for processing transactions.
+- [ ] Create Events
+- [ ] Modify Events
+- [ ] Delete Events
 
 </details>
 
 <details><summary>Database</summary>
 
-- [ ] Firebase
-- [ ] MySQL
-
-</details>
-
-
-<details><summary>Events</summary>
-
-- [ ] Create Events
-- [ ] Modify Events
-- [ ] Delete Events
-- [ ] Electronic QR Codes
-- [ ] Paper Tickets
+- [ ] **Firebase Plugin**
+- [ ] **MySQL Plugin**
 
 </details>
 
@@ -76,10 +88,9 @@ The goal is to create an open-sourced modular convention application with plug-i
 - [ ] Automated QR Code Creation
 - [ ] QR Code Scanner
 - [ ] Exhibitor Profile
+- [ ] Tools and systems for managing exhibitor information and activities.
 
 </details>
-
-
 
 <details><summary>Awards</summary>
 
@@ -89,14 +100,24 @@ The goal is to create an open-sourced modular convention application with plug-i
 
 </details>
 
+#### Data Validation
+<details><summary>Validation Across Features</summary>
+
+- [ ] **Object Validation**
+  - Ensure all data fields across Events, Users, and Database categories are validated and follow predefined rules and standards.
+
+</details>
+
+
 <hr>
 
-<!-- #### How can I help?
+#### How can I help?
 <div align="justify">
-If you would like to contribute or provide feedback: please join the discord channel below.</div>
+If you would like to contribute or provide feedback: please reach out by email below.</div>
 
-<a href="https://discord.gg/32TcwgbtrY" target="_blank"><img height="60" width="60" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg" /></a>
-<hr> -->
+[![Gmail](https://img.shields.io/badge/Gmail-EA4335.svg?style=for-the-badge&logo=gmail&logoColor=white)](mailto:akiraka@gmail.com)
+
+<hr>
 
 ### Built With
 
