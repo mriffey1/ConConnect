@@ -26,36 +26,26 @@ jobs:
       - name: Fetch all branches
         run: git fetch --all
 
-      - name: Get commit message bodies with hashes
+      - name: Get commit message bodies
         id: get_commit_bodies
         run: |
-          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%h%n%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
-            # First line is the hash, the rest is the body
-            hash = $1
-            body = ""
-          
-            # Loop through the remaining lines to accumulate the body (keeping newlines)
-            for (i=2; i<=NF; i++) {
-              body = body $i "\n"
-            }
-          
-            # Remove leading/trailing spaces from the body
-            gsub(/^[ \t]+|[ \t]+$/, "", body)
-          
-            # Check if the body is not empty and print with preserved newlines
-            if (body !~ /^[[:space:]]*$/) {
-              print "" hash ": \n" body "<hr>"
+            body = $0  # Capture the entire body as a block
+            # Print the entire commit body if it'\''s not empty
+            if (body !~ /^$/) {
+              print body
             }
           }')
           
-          echo "Commit Bodies with Hashes and Newlines Preserved:"
-          echo "$commit_bodies"  # Output the commit bodies with hashes to the log
+          echo "Commit Bodies:"
+          echo "$commit_bodies"  # Output the commit bodies to the log
           
-          # Save the commit bodies with hashes to the environment variable
+          # Save the commit bodies to the environment variable
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_bodies" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
 
       - name: Find existing pull request
         id: find_pr
