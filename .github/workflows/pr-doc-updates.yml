@@ -45,7 +45,7 @@ jobs:
           
             # Check if the body is not empty and print with preserved newlines
             if (body !~ /^[[:space:]]*$/) {
-              print "* " hash ": \n" body "<hr>"
+              print "" hash ": \n" body "<hr>"
             }
           }')
           
