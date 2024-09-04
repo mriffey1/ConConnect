@@ -1,0 +1,96 @@
+name: Update PR with Commit Messages
+
+on:
+  push:
+    branches:
+      - doc-updates
+
+jobs:
+  update_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history to ensure you have the full commit history
+
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
+
+      - name: Authenticate GitHub CLI
+        run: gh auth setup-git
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch all branches
+        run: git fetch --all
+
+      - name: Get commit message bodies with hashes
+        id: get_commit_bodies
+        run: |
+          repo_url=""
+          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          {
+            # Split the first line to separate the hash from the body
+            split($0, parts, " ")
+            hash = parts[1]
+            body = substr($0, length(hash) + 2)
+      
+            # Remove leading/trailing spaces
+            sub(/^[ \t]+/, "", body)
+            sub(/[ \t]+$/, "", body)
+      
+            # Check if the body is not empty
+            if (body !~ /^[[:space:]]*$/) {
+              # Replace consecutive newlines with <br><br> for normal text
+              gsub(/\n+/, "\n\n", body)
+      
+              # Ensure that bullet points (*) are on their own line with exactly one blank line before and after
+              gsub(/<br><br>\* /, "\n\n * ", body)   # Avoid extra <br> before a bullet point
+              gsub(/\* /, "\n \n * ", body)        # Add a line before the bullet point
+              gsub(/<br><br>\*/, "\n *", body)      # Remove redundant <br> after the bullet point
+      
+              # Format the hash as a link to the commit and create the table row
+              print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commit/" hash "\">" hash "</a></td><td>" body "</td></tr>"
+            }
+          }')
+      
+          # Wrap the table around the commit rows
+          commit_table="<table border=\"1\" cellpadding=\"5\" cellspacing=\"0\"><thead><tr><th>Commit Hash</th><th>Commit Body</th></tr></thead><tbody>"
+          commit_table+="$commit_bodies</tbody></table>"
+      
+          echo "Commit Bodies Table:"
+          echo "$commit_table"
+      
+          # Save the commit table to the environment variable
+          echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
+          echo "$commit_table" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+
+
+
+
+
+      - name: Find existing pull request
+        id: find_pr
+        run: |
+          pr=$(gh pr list --head doc-updates --state open --json number --jq '.[0].number')
+          echo "PR_NUMBER=$pr" >> $GITHUB_ENV
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update PR description if exists
+        if: env.PR_NUMBER != ''
+        run: |
+          gh pr edit $PR_NUMBER --body "${{ env.COMMIT_BODIES }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create a draft pull request if not exists
+        if: env.PR_NUMBER == ''
+        run: |
+          gh pr create --base main --head doc-updates --title "Draft Pull Request from doc-updates" --body "${{ env.COMMIT_BODIES }}" --draft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
