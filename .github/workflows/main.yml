@@ -47,9 +47,9 @@ jobs:
            gsub(/\n+/, "\n\n", body)
           
            # Ensure that bullet points (*) are on their own line with exactly one blank line before and after
-           gsub(/(\n)\* /, "\n\n* ", body)         # Normal bullet points
-           gsub(/\n  \* /, "\n\n  * ", body)   # Sub-bullet points with 2 spaces (replace with non-breaking spaces)
-           gsub(/\* /, "\n \n * ", body)              # Add a line before the bullet point
+           gsub(/(\n)\* /, "\n* ", body)         # Normal bullet points
+           gsub(/\n  \* /, "\n  * ", body)   # Sub-bullet points with 2 spaces (replace with non-breaking spaces)
+           gsub(/\* /, "\n * ", body)              # Add a line before the bullet point
            gsub(/<br><br>\*/, "\n *", body)           # Remove redundant <br> after the bullet point
           
            # Format the hash as a link to the commit and create the table row
