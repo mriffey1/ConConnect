@@ -60,8 +60,9 @@ jobs:
            gsub(/\* /, " * ", body)              # Add a line before the bullet point
            gsub(/<br><br>\*/, "\n *", body)           # Remove redundant <br> after the bullet point
           
-           # Format the hash as a link to the commit and create the table row
-           print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commit/" hash "\">" hash "</a></td><td>" body "</td></tr>"
+
+            # Format the hash as a link to the commit and create the table row with a new column for changed files
+              print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commit/" hash "\">" hash "</a></td><td>" body "</td><td>" files "</td></tr>"
           }
           }')
           
