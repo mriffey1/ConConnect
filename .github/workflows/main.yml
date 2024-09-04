@@ -107,3 +107,13 @@ jobs:
           gh pr edit $PR_NUMBER --add-label "documentation"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get raw commit data for debugging
+        id: get_raw_commit_data
+        run: |
+          # Fetch the raw git log output including file changes
+          raw_data=$(git log origin/main..origin/documentation-updates --name-status --pretty=format:"%h %b%n---END---")
+
+          # Output the raw data to the console for debugging
+          echo "Raw Commit Data:"
+          echo "$raw_data"
