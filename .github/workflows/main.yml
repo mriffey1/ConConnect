@@ -57,9 +57,9 @@ jobs:
           }')
       
           # Wrap the table around the commit rows
-          commit_table="<table border=\"1\" cellpadding=\"5\" cellspacing=\"0\"><thead><tr><th>Commit Hash</th><th>Commit Body</th></tr></thead><tbody>"
+          commit_table="<table border=\"1\" cellpadding=\"5\" cellspacing=\"0\" width=\"100%\"><thead><tr><th>Commit Hash</th><th>Commit Body</th></tr></thead><tbody>"
           commit_table+="$commit_bodies</tbody></table>"
-      
+
           echo "Commit Bodies Table:"
           echo "$commit_table"
       
