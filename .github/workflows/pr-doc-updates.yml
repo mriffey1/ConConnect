@@ -29,16 +29,21 @@ jobs:
       - name: Get commit message bodies with hashes
         id: get_commit_bodies
         run: |
-          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%h%n%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
-            hash = $1
-            body = substr($0, index($0, "\n") + 1)
-            
+            body = $0
+      
+            # Remove leading/trailing spaces
+            sub(/^[ \t]+/, "", body)
+            sub(/[ \t]+$/, "", body)
+      
             # Check if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
-              # Replace newlines with <br> or preserve them for multiline
-              gsub(/\n/, "<br>", body)
-              print hash ": " body "<hr>"
+              # Replace consecutive newlines with a single <br> for paragraph separation
+              gsub(/\n+/, "<br>", body)
+      
+              # Print the body followed by <hr>
+              print body "<hr>"
             }
           }')
       
@@ -49,6 +54,7 @@ jobs:
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_bodies" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
 
       - name: Find existing pull request
         id: find_pr
