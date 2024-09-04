@@ -29,7 +29,7 @@ jobs:
       - name: Get commit message bodies with hashes
         id: get_commit_bodies
         run: |
-          repo_url="https://github.com/mriffey1/ConConnect"
+          repo_url=""
           commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
             # Split the first line to separate the hash from the body
@@ -52,7 +52,7 @@ jobs:
               gsub(/<br><br>\*/, "\n*", body)      # Remove redundant <br> after the bullet point
       
               # Format the hash as a link to the commit and create the table row
-              print "<tr><td><a href=\"" repo_url "/commit/" hash "\">" hash "</a></td><td>" body "</td></tr>"
+              print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commits/" hash "\">" hash "</a></td><td>" body "</td></tr>"
             }
           }')
       
