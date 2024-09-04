@@ -30,13 +30,20 @@ jobs:
         id: get_commit_bodies
         run: |
           repo_url=""
-          commit_bodies=$(git log origin/main..origin/documentation-updates --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          commit_bodies=$(git log origin/main..origin/documentation-updates --pretty=format:"%h %b%n---END---" --name-only | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
           # Split the first line to separate the hash from the body
           split($0, parts, " ")
           hash = parts[1]
           body = substr($0, length(hash) + 2)
           
+          # Collect the files changed (lines after the body)
+            files = ""
+            for (i = 2; i <= NF; i++) {
+              if ($i ~ /^[a-zA-Z0-9]/) {
+                files = files $i "<br>"
+              }
+            }
           
           # Remove leading/trailing spaces
           sub(/^[ \t]+/, "", body)
