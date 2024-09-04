@@ -44,9 +44,12 @@ jobs:
       
             # Check if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
-              # Replace consecutive newlines with <br> but ensure bullet points start a new line
+              # Replace consecutive newlines with <br> but ensure bullet points (*) start on their own line
               gsub(/\n+/, "<br>", body)
-              gsub(/\* /, "<br>* ", body)
+      
+              # Add extra <br> before and after each bullet point (*) for proper formatting
+              gsub(/\* /, "<br><br>* ", body)
+              gsub(/<br><br>\*/, "<br><br>* ", body)  # Ensure no extra line breaks after <br> for bullet points
       
               # Format the hash as a link to the commit and create the table row
               print "<tr><td><a href=\"" repo_url "/commit/" hash "\">" hash "</a></td><td>" body "</td></tr>"
@@ -64,6 +67,7 @@ jobs:
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_table" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
 
 
 
