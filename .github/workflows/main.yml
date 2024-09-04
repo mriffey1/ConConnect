@@ -37,13 +37,6 @@ jobs:
           hash = parts[1]
           body = substr($0, length(hash) + 2)
           
-          # Collect the files changed (lines after the body)
-            files = ""
-            for (i = 2; i <= NF; i++) {
-              if ($i ~ /^[a-zA-Z0-9]/) {
-                files = files $i "<br>"
-              }
-            }
           
           # Remove leading/trailing spaces
           sub(/^[ \t]+/, "", body)
