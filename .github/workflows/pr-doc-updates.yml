@@ -57,10 +57,6 @@ jobs:
           echo "$commit_bodies" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-
-
-
-
       - name: Find existing pull request
         id: find_pr
         run: |
