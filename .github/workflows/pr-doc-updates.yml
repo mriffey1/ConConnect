@@ -29,9 +29,14 @@ jobs:
       - name: Get commit message bodies with hashes
         id: get_commit_bodies
         run: |
-          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          repo_url="https://github.com/yourusername/yourrepo"  # Replace with your repository URL
+      
+          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%h %b%n---END---" | awk -v repo_url="$repo_url" 'BEGIN { RS="---END---"; FS="\n" }
           {
-            body = $0
+            # Split the first line to separate the hash from the body
+            split($0, parts, " ")
+            hash = parts[1]
+            body = substr($0, length(hash) + 2)
       
             # Remove leading/trailing spaces
             sub(/^[ \t]+/, "", body)
@@ -39,11 +44,12 @@ jobs:
       
             # Check if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
-              # Replace consecutive newlines with a single <br> for paragraph separation
+              # Replace consecutive newlines with <br> but ensure bullet points start a new line
               gsub(/\n+/, "<br>", body)
+              gsub(/\* /, "<br>* ", body)
       
-              # Print the body followed by <hr>
-              print body "<hr>"
+              # Format the hash as a link to the commit and add <hr> at the end
+              print "<a href=\"" repo_url "/commit/" hash "\">" hash "</a>: " body "<hr>"
             }
           }')
       
@@ -54,6 +60,7 @@ jobs:
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_bodies" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
 
 
       - name: Find existing pull request
