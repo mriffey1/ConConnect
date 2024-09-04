@@ -28,10 +28,8 @@ jobs:
 
       - name: Get commit message bodies with hashes
         id: get_commit_bodies
-        run: |
-          repo_url="https://github.com/yourusername/yourrepo"  # Replace with your repository URL
-      
-          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%h %b%n---END---" | awk -v repo_url="$repo_url" 'BEGIN { RS="---END---"; FS="\n" }
+        run: |     
+          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
             # Split the first line to separate the hash from the body
             split($0, parts, " ")
@@ -45,15 +43,15 @@ jobs:
             # Check if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
               # Replace consecutive newlines with <br><br> for normal text
-              gsub(/\n+/, "<br><br>", body)
+              gsub(/\n+/, "\n", body)
       
               # Ensure that bullet points (*) are on their own line with exactly one blank line before and after
-              gsub(/<br><br>\* /, "<br>* ", body)   # Avoid extra <br> before a bullet point
-              gsub(/\* /, "<br><br>* ", body)        # Add a line before the bullet point
-              gsub(/<br><br>\*/, "<br>*", body)      # Remove redundant <br> after the bullet point
+              gsub(/<br><br>\* /, "\n* ", body)   # Avoid extra <br> before a bullet point
+              gsub(/\* /, "\n* ", body)        # Add a line before the bullet point
+              gsub(/<br><br>\*/, "\n*", body)      # Remove redundant <br> after the bullet point
       
               # Format the hash as a link to the commit and create the table row
-              print "<tr><td><a href=\"" repo_url "/commit/" hash "\">" hash "</a></td><td>" body "</td></tr>"
+              print "<tr><td><a href=\"/commit/" hash "\">" hash "</a></td><td>" body "</td></tr>"
             }
           }')
       
