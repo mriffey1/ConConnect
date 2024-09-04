@@ -37,6 +37,14 @@ jobs:
           hash = parts[1]
           body = substr($0, length(hash) + 2)
           
+           # Collect the files changed (lines after the body)
+            files = ""
+            for (i = 2; i <= NF; i++) {
+              if ($i ~ /^[a-zA-Z0-9]/) {
+                files = files $i "<br>"
+              }
+            }
+          
           # Remove leading/trailing spaces
           sub(/^[ \t]+/, "", body)
           sub(/[ \t]+$/, "", body)
@@ -58,7 +66,7 @@ jobs:
           }')
           
           # Wrap the table around the commit rows
-          commit_table="<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\" width=\"100%\"><thead><tr><th width=\"25%\">Commit Hash</th><th width=\"75%\">Commit Body</th></tr></thead><tbody>"
+          commit_table="<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\" width=\"100%\"><thead><tr><th width=\"25%\">Commit Hash</th><th width=\"50%\">Commit Body</th><th width=\"25%\">Files Changed</th></tr></thead><tbody>"
           commit_table+="$commit_bodies</tbody></table>"
           
           echo "Commit Bodies Table:"
