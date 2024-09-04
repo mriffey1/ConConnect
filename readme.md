@@ -42,44 +42,50 @@ The goal is to create an open-sourced modular convention application with plugin
 #### Core Functionality
 <details><summary>User Registration and Management</summary>
 
-- [X] **User Registration**
-  - [X] User Creation
+- [ ] **User Registration**
+  - [ ] User Creation
   - [ ] User Login
-  - [X] User Password Encryption
-    - Custom Username: Check to ensure the username does not exist.
-    - Create user in the database.
-    - Hash password/security features.
-    - Include user data fields: First Name, Last Name, Pronouns, Email Address, Password (with confirmation), Mailing Address, Phone Number.
-    - Sign-up button to submit registration.
+  - [ ] **User Password Encryption**
+    - [ ] Custom Username: Check to ensure the username does not exist.
+    - [ ] Create user in the database.
+    - [ ] Hash password/security features.
+    - [ ] Include user data fields: First Name, Last Name, Pronouns, Email Address, Password (with confirmation), Mailing Address, Phone Number.
+    - [ ] Sign-up button to submit registration.
 - [ ] **User Profile Maintenance**
   - [ ] Profile landing page
-  - Ability to change password, update pronouns, add/update profile picture.
-  - Update mailing address and phone number.
+  - [ ] Ability to change password, update pronouns, add/update profile picture.
+  - [ ] Update mailing address and phone number.
 - [ ] **User Roles**
   - [ ] Add custom roles
   - [ ] Set permissions of custom roles
-  - Dropdown with roles and associated permissions.
+  - [ ] Dropdown with roles and associated permissions.
 
 </details>
 
 #### Plugin Features
 <details><summary>Events</summary>
 
-- [ ] **Electronic Event Tickets**: Attach electronic tickets to user badges.
-- [ ] **QR Codes for Event (Attendee)**: Generate and manage QR codes for electronic tickets.
-- [ ] **Printed Event Tickets**: Provide options for printing event tickets.
-- [ ] **QR Code Scanner for Event (Organizers)**: Dashboard for organizers to scan QR codes; ability to see who is still missing in real-time.
-- [ ] **Payment**: Integration with various payment systems for processing transactions.
 - [ ] Create Events
 - [ ] Modify Events
 - [ ] Delete Events
+- [ ] **Electronic Event Tickets**
+  - [ ] Attach electronic tickets to user badges.
+- [ ] **QR Codes for Event (Attendee)**
+  - [ ] Generate and manage QR codes for electronic tickets.
+- [ ] **Printed Event Tickets**
+  - [ ] Provide options for printing event tickets.
+- [ ] **QR Code Scanner for Event (Organizers)**
+  - [ ] Dashboard for organizers to scan QR codes; ability to see who is still missing in real-time.
+- [ ] **Payments**
+  - [ ] Integration with various payment systems for processing transactions.
+
 
 </details>
 
 <details><summary>Database</summary>
 
-- [ ] **Firebase Plugin**
-- [ ] **MySQL Plugin**
+- [ ] Firebase Plugin
+- [ ] MySQL Plugin
  
 </details>
  
@@ -104,7 +110,7 @@ The goal is to create an open-sourced modular convention application with plugin
 <details><summary>Validation Across Features</summary>
 
 - [ ] **Object Validation**
-  - Ensure all data fields across Events, Users, and Database categories are validated and follow predefined rules and standards.
+  - [ ] Ensure all data fields across Events, Users, and Database categories are validated and follow predefined rules and standards.
 
 </details>
 
