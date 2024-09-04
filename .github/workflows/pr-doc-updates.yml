@@ -44,12 +44,15 @@ jobs:
       
             # Check if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
-              # Replace consecutive newlines with <br> but ensure bullet points (*) start on their own line
-              gsub(/\n+/, "<br>", body)
+              # Replace consecutive newlines with a single <br> for normal text
+              gsub(/\n+/, "<br><br>", body)
       
-              # Add extra <br> before and after each bullet point (*) for proper formatting
+              # Ensure bullet points (*) are on their own line with one blank line before them
+              gsub(/<br><br>\* /, "<br><br>* ", body)
               gsub(/\* /, "<br><br>* ", body)
-              gsub(/<br><br>\*/, "<br><br>* ", body)  # Ensure no extra line breaks after <br> for bullet points
+      
+              # Remove any extra <br> after the bullet point
+              gsub(/<br><br>\*/, "<br>*", body)
       
               # Format the hash as a link to the commit and create the table row
               print "<tr><td><a href=\"" repo_url "/commit/" hash "\">" hash "</a></td><td>" body "</td></tr>"
