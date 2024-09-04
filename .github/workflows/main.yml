@@ -26,16 +26,6 @@ jobs:
       - name: Fetch all branches
         run: git fetch --all
 
-      - name: Get raw commit data for debugging
-        id: get_raw_commit_data
-        run: |
-          # Fetch the raw git log output including file changes
-          raw_data=$(git log origin/main..origin/documentation-updates --name-status --pretty=format:"%h %b%n---END---")
-
-          # Output the raw data to the console for debugging
-          echo "Raw Commit Data:"
-          echo "$raw_data"
-
           
       - name: Get commit message bodies with hashes and files changed
         id: get_commit_bodies
@@ -60,8 +50,8 @@ jobs:
             sub(/^[ \t]+/, "", body)
             sub(/[ \t]+$/, "", body)
           
-            # Check if the body is not empty
-            if (body !~ /^[[:space:]]*$/) {
+            # Check if the body and files are not empty
+            if (body !~ /^[[:space:]]*$/ && files != "") {
               # Replace consecutive newlines with <br><br> for normal text
               gsub(/\n+/, "\n\n", body)
           
@@ -87,8 +77,7 @@ jobs:
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_table" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-
-          
+        
 
       - name: Find existing pull request
         id: find_pr
