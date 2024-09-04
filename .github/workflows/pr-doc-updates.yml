@@ -26,22 +26,29 @@ jobs:
       - name: Fetch all branches
         run: git fetch --all
 
-      - name: Get commit message bodies
+      - name: Get commit message bodies with hashes
         id: get_commit_bodies
         run: |
-          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          commit_bodies=$(git log origin/main..origin/doc-updates --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
-            body = $0  # Capture the entire body as a block
-            # Print the entire commit body if it'\''s not empty
-            if (body !~ /^$/) {
-              print body
-            }
+          # Split the first line by space to separate the hash from the body
+          split($0, parts, " ")
+          hash = parts[1]
+          body = substr($0, length(hash) + 2)  # Capture the body after the hash
+          
+          # Remove leading spaces from body (if any)
+          sub(/^[ \t]+/, "", body)
+          
+          # Check if the body is not empty
+          if (body !~ /^[[:space:]]*$/) {
+           print hash ": " body "<hr>"
+          }
           }')
           
-          echo "Commit Bodies:"
-          echo "$commit_bodies"  # Output the commit bodies to the log
+          echo "Commit Bodies with Hashes:"
+          echo "$commit_bodies"  # Output the commit bodies with hashes to the log
           
-          # Save the commit bodies to the environment variable
+          # Save the commit bodies with hashes to the environment variable
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_bodies" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
