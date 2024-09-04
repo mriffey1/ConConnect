@@ -68,11 +68,6 @@ jobs:
           echo "$commit_table" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-
-
-
-
-
       - name: Find existing pull request
         id: find_pr
         run: |
@@ -92,5 +87,12 @@ jobs:
         if: env.PR_NUMBER == ''
         run: |
           gh pr create --base main --head documentation-updates --title "Draft Pull Request from documentation-updates" --body "${{ env.COMMIT_BODIES }}" --draft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add documentation label to the pull request
+        if: env.PR_NUMBER != ''
+        run: |
+          gh pr edit $PR_NUMBER --add-label "documentation"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
