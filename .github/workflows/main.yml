@@ -26,60 +26,16 @@ jobs:
       - name: Fetch all branches
         run: git fetch --all
 
-      - name: Get commit message bodies with hashes and changed files
-        id: get_commit_bodies
+      - name: Get raw commit data for debugging
+        id: get_raw_commit_data
         run: |
-          repo_url=""
-          commit_data=$(git log origin/main..origin/documentation-updates --pretty=format:"%h %b%n---END---" --name-only | awk 'BEGIN { RS="---END---"; FS="\n" }
-          {
-            # Split the first line to separate the hash from the body
-            split($0, parts, " ")
-            hash = parts[1]
-            body = substr($0, length(hash) + 2)
-            
-            # Remove leading/trailing spaces
-            sub(/^[ \t]+/, "", body)
-            sub(/[ \t]+$/, "", body)
-      
-            # Collect file names (skipping the first line with the commit hash)
-            files_changed = ""
-            for (i = 2; i <= NF; i++) {
-              if ($i != "") {
-                files_changed = files_changed "<li>" $i "</li>"
-              }
-            }
-      
-            # Check if the body is not empty
-            if (body !~ /^[[:space:]]*$/) {
-              # Replace consecutive newlines with <br><br> for normal text
-              gsub(/\n+/, "\n\n", body)
-            
-              # Ensure that bullet points (*) are on their own line with exactly one blank line before and after
-              gsub(/(\n)\* /, "\n* ", body)         # Normal bullet points
-              gsub(/\n  \* /, "  * ", body)   # Sub-bullet points with 2 spaces (replace with non-breaking spaces)
-              gsub(/\* /, " * ", body)              # Add a line before the bullet point
-              gsub(/<br><br>\*/, "\n *", body)      # Remove redundant <br> after the bullet point
-              
-              # Format the hash as a link to the commit and create the table row
-              if (files_changed != "") {
-                print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commit/" hash "\">" hash "</a></td><td>" body "</td><td><ul>" files_changed "</ul></td></tr>"
-              }
-            }
-          }')
-          
-          # Wrap the table around the commit rows
-          commit_table="<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\" width=\"100%\"><thead><tr><th width=\"25%\">Commit Hash</th><th width=\"50%\">Commit Body</th><th width=\"25%\">Files Changed</th></tr></thead><tbody>"
-          commit_table+="$commit_data</tbody></table>"
-          
-          echo "Commit Table:"
-          echo "$commit_table"
-          
-          # Save the commit table to the environment variable
-          echo "COMMIT_TABLE<<EOF" >> $GITHUB_ENV
-          echo "$commit_table" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          # Fetch the raw git log output including file changes
+          raw_data=$(git log origin/main..origin/documentation-updates --name-status --pretty=format:"%h %b%n---END---")
 
-          
+          # Output the raw data to the console for debugging
+          echo "Raw Commit Data:"
+          echo "$raw_data"
+        
 
       - name: Find existing pull request
         id: find_pr
