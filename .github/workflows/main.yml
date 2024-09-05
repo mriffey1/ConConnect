@@ -26,48 +26,39 @@ jobs:
       - name: Fetch all branches
         run: git fetch --all
 
-          
-      - name: Get commit message bodies with hashes and files changed
+      - name: Get commit message bodies with hashes
         id: get_commit_bodies
         run: |
           repo_url=""
-          commit_bodies=$(git log origin/main..origin/documentation-updates --name-only --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          commit_bodies=$(git log origin/main..origin/documentation-updates --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
-            # Split the first line to separate the hash from the body
-            split($0, parts, " ")
-            hash = parts[1]
-            body = substr($0, length(hash) + 2)
-
-            # Remove leading/trailing spaces from the body
-            sub(/^[ \t]+/, "", body)
-            sub(/[ \t]+$/, "", body)
-
-            # Only collect files and output rows if the body is not empty
-            if (body !~ /^[[:space:]]*$/) {
-              # Collect the files changed (lines after the body, list file names)
-              files = ""
-              for (i = 2; i <= NF; i++) {
-                if ($i ~ /^[^[:space:]]+/) {  # Match any file name (non-empty lines)
-                  files = files $i "<br>"
-                }
-              }
-
-              # Replace consecutive newlines with <br><br> for normal text
-              gsub(/\n+/, "\n\n", body)
-
-              # Ensure that bullet points (*) are on their own line with exactly one blank line before and after
-              gsub(/(\n)\* /, "\n* ", body)         # Normal bullet points
-              gsub(/\n  \* /, "  * ", body)         # Sub-bullet points with 2 spaces
-              gsub(/\* /, " * ", body)              # Add a line before the bullet point
-              gsub(/<br><br>\*/, "\n *", body)      # Remove redundant <br> after the bullet point
-
-              # Format the hash as a link to the commit and create the table row with a new column for changed files
-              print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commit/" hash "\">" hash "</a></td><td>" body "</td><td>" files "</td></tr>"
-            }
+          # Split the first line to separate the hash from the body
+          split($0, parts, " ")
+          hash = parts[1]
+          body = substr($0, length(hash) + 2)
+          
+          # Remove leading/trailing spaces
+          sub(/^[ \t]+/, "", body)
+          sub(/[ \t]+$/, "", body)
+          
+          # Check if the body is not empty
+          if (body !~ /^[[:space:]]*$/) {
+           # Replace consecutive newlines with <br><br> for normal text
+           gsub(/\n+/, "\n\n", body)
+          
+           # Ensure that bullet points (*) are on their own line with exactly one blank line before and after
+           gsub(/(\n)\* /, "\n* ", body)         # Normal bullet points
+           gsub(/\n  \* /, "  * ", body)   # Sub-bullet points with 2 spaces (replace with non-breaking spaces)
+           gsub(/\* /, " * ", body)              # Add a line before the bullet point
+           gsub(/<br><br>\*/, "\n *", body)           # Remove redundant <br> after the bullet point
+          
+           # Format the hash as a link to the commit and create the table row
+           print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commit/" hash "\">" hash "</a></td><td>" body "</td></tr>"
+          }
           }')
           
           # Wrap the table around the commit rows
-          commit_table="<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\" width=\"100%\"><thead><tr><th width=\"15%\">Commit Hash</th><th width=\"60%\">Commit Body</th><th width=\"25%\">Files Changed</th></tr></thead><tbody>"
+          commit_table="<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\" width=\"100%\"><thead><tr><th width=\"25%\">Commit Hash</th><th width=\"75%\">Commit Body</th></tr></thead><tbody>"
           commit_table+="$commit_bodies</tbody></table>"
           
           echo "Commit Bodies Table:"
@@ -77,7 +68,7 @@ jobs:
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_table" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-       
+          
 
       - name: Find existing pull request
         id: find_pr
@@ -107,5 +98,3 @@ jobs:
           gh pr edit $PR_NUMBER --add-label "documentation"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
