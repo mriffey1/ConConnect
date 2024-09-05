@@ -31,7 +31,7 @@ jobs:
         id: get_commit_bodies
         run: |
           repo_url=""
-          commit_bodies=$(git log origin/main..origin/documentation-updates --name-only --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          commit_bodies=$(git log origin/main..origin/documentation-updates --name-status --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
             # Split the first line to separate the hash from the body
             split($0, parts, " ")
@@ -42,7 +42,7 @@ jobs:
             sub(/^[ \t]+/, "", body)
             sub(/[ \t]+$/, "", body)
 
-            # Check if the body is not empty
+            # Only collect files and output rows if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
               # Collect the files changed (lines after the body, starting with M, A, D for modified, added, deleted)
               files = ""
@@ -77,6 +77,7 @@ jobs:
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_table" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
        
 
       - name: Find existing pull request
