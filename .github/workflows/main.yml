@@ -29,51 +29,49 @@ jobs:
       - name: Get commit message bodies with hashes and changed files
         id: get_commit_bodies
         run: |
-          repo_url=""
-          commit_data=$(git log origin/main..origin/documentation-updates --name-only --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          repo_url="https://github.com/mriffey1/ConConnect/commit/"
+          commit_data=$(git log origin/main..origin/documentation-updates --name-only --pretty=format:"%h%n%b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
-            hash = ""
+            hash = $1
             body = ""
             files_changed = ""
       
-            for (i = 1; i <= NF; i++) {
-              line = $i
-              
-              if (i == 1) {
-                split(line, parts, " ")
-                hash = parts[1]
-                body = substr(line, length(hash) + 2)
-                sub(/^[ \t]+/, "", body)  # Remove leading spaces
-                sub(/[ \t]+$/, "", body)  # Remove trailing spaces
-              }
-              else if (line != "") {
-                files_changed = files_changed "<li>" line "</li>"
+            # Extract the body from the second line
+            if (NF > 1) {
+              body = $2
+            }
+      
+            # Extract file names from lines starting from the 3rd line
+            for (i = 3; i <= NF; i++) {
+              if ($i != "") {
+                files_changed = files_changed "<li>" $i "</li>"
               }
             }
       
+            # Only include in the table if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
               # Replace consecutive newlines with <br><br> for normal text formatting
-              gsub(/\n+/, "\n\n", body)
-              
+              gsub(/\n+/, "<br><br>", body)
+      
               # Handle bullet points formatting
               gsub(/(\n)\* /, "\n* ", body)         # Normal bullet points
               gsub(/\n  \* /, "  * ", body)         # Sub-bullet points with 2 spaces
               gsub(/\* /, " * ", body)              # Add a line before the bullet point
-              
-              print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commit/" hash "\">" hash "</a></td><td>" body "</td><td><ul>" files_changed "</ul></td></tr>"
+      
+              print "<tr><td><a href=\"" repo_url hash "\">" hash "</a></td><td>" body "</td><td><ul>" files_changed "</ul></td></tr>"
             }
           }')
-          
+      
+          # Wrap the table around the commit rows
           commit_table="<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\" width=\"100%\"><thead><tr><th width=\"25%\">Commit Hash</th><th width=\"50%\">Commit Body</th><th width=\"25%\">Files Changed</th></tr></thead><tbody>"
           commit_table+="$commit_data</tbody></table>"
           
           echo "Commit Table:"
           echo "$commit_table"
-          
+      
           echo "COMMIT_TABLE<<EOF" >> $GITHUB_ENV
           echo "$commit_table" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-
         
 
       - name: Find existing pull request
