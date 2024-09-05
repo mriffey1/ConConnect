@@ -27,7 +27,7 @@ th, td {
 }
 .sold-out-image {
     position: relative;
-    background-color: #bebebe;
+    background-color: #d8d8d8;
 }
 .top{
     border-bottom: 1px solid #000;
@@ -44,7 +44,7 @@ th, td {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 30%;
-    opacity: 0.05;
+    opacity: 0.04;
     z-index: 1; /* Ensure the pseudo-element stays behind the row content */
 }
 
