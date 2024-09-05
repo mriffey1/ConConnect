@@ -1,4 +1,4 @@
-package com.test.conconnect.service.impl;
+package com.test.conconnect.service;
 
 import com.test.conconnect.model.Event;
 import com.test.conconnect.repository.EventRepository;
