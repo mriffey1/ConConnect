@@ -50,7 +50,6 @@ jobs:
             # Check if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
       
-              # Loop through each file in the repository and replace occurrences in the body
               for (i in files) {
                 file = files[i]
                 gsub(file, "<a href=\"" repo_url file "\">" file "</a>", body)
