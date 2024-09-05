@@ -1,4 +1,4 @@
-name: Update PR with Commit Messages
+- name: Update PR with Commit Messages
 
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
       
           commit_bodies=$(git log origin/main..origin/documentation-updates --pretty=format:"%h %b%n---END---" | awk -v repo_url="$repo_url" -v file_list="$file_list" '
           BEGIN { RS="---END---"; FS="\n"; split(file_list, files, "\n") }
-      
+
           {
             # Split the first line to separate the hash from the body
             split($0, parts, " ")
@@ -70,19 +70,23 @@ jobs:
             }
           }')
       
-          # Wrap the table around the commit rows
-          commit_table="<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\" width=\"100%\"><thead><tr><th width=\"25%\">Commit Hash</th><th width=\"75%\">Commit Body</th></tr></thead><tbody>"
-          commit_table+="$commit_bodies</tbody></table>"
-      
-          echo "Commit Bodies Table:"
-          echo "$commit_table"
-          
-          # Save the commit table to the environment variable
-          echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
-          echo "$commit_table" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          # Check if there are any valid commit bodies
+          if [ -n "$commit_bodies" ]; then
+            # Wrap the table around the commit rows
+            commit_table="<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\" width=\"100%\"><thead><tr><th width=\"25%\">Commit Hash</th><th width=\"75%\">Commit Body</th></tr></thead><tbody>"
+            commit_table+="$commit_bodies</tbody></table>"
 
-          
+            echo "Commit Bodies Table:"
+            echo "$commit_table"
+            
+            # Save the commit table to the environment variable
+            echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
+            echo "$commit_table" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+          else
+            echo "No valid commit bodies found. Skipping PR creation."
+            echo "NO_COMMIT_BODIES=true" >> $GITHUB_ENV
+          fi
 
       - name: Find existing pull request
         id: find_pr
@@ -93,21 +97,21 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update PR description if exists
-        if: env.PR_NUMBER != ''
+        if: env.PR_NUMBER != '' && env.NO_COMMIT_BODIES != 'true'
         run: |
           gh pr edit $PR_NUMBER --body "${{ env.COMMIT_BODIES }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create a draft pull request if not exists
-        if: env.PR_NUMBER == ''
+        if: env.PR_NUMBER == '' && env.NO_COMMIT_BODIES != 'true'
         run: |
           gh pr create --base main --head documentation-updates --title "Draft Pull Request from documentation-updates" --body "${{ env.COMMIT_BODIES }}" --draft
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Add documentation label to the pull request
-        if: env.PR_NUMBER != ''
+        if: env.PR_NUMBER != '' && env.NO_COMMIT_BODIES != 'true'
         run: |
           gh pr edit $PR_NUMBER --add-label "documentation"
         env:
