@@ -31,7 +31,7 @@ jobs:
         id: get_commit_bodies
         run: |
           repo_url=""
-          commit_bodies=$(git log origin/main..origin/documentation-updates --name-status --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          commit_bodies=$(git log origin/main..origin/documentation-updates --name-only --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
             # Split the first line to separate the hash from the body
             split($0, parts, " ")
