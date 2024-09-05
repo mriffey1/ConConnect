@@ -44,9 +44,12 @@ jobs:
 
             # Only collect files and output rows if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
+              # Collect the files changed (lines after the body, list file names)
               files = ""
               for (i = 2; i <= NF; i++) {
+                if ($i ~ /^[^[:space:]]+/) {  # Match any file name (non-empty lines)
                   files = files $i "<br>"
+                }
               }
 
               # Replace consecutive newlines with <br><br> for normal text
@@ -74,7 +77,6 @@ jobs:
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_table" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-
        
 
       - name: Find existing pull request
