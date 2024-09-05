@@ -51,7 +51,7 @@ jobs:
           
           # Get the list of all files in the repository
           file_list=$(git ls-tree -r --name-only HEAD)
-      
+          
           commit_bodies=$(git log origin/main..origin/$current_branch --pretty=format:"%h %b%n---END---" | awk -v repo_url="$repo_url" -v file_list="$file_list" '
           BEGIN { RS="---END---"; FS="\n"; split(file_list, files, "\n") }
 
@@ -60,32 +60,32 @@ jobs:
             split($0, parts, " ")
             hash = parts[1]
             body = substr($0, length(hash) + 2)
-      
+          
             # Remove leading/trailing spaces
             sub(/^[ \t]+/, "", body)
             sub(/[ \t]+$/, "", body)
-      
+          
             # Check if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
               for (i in files) {
                 file = files[i]
                 gsub(file, "<a href=\"" repo_url file "\">" file "</a>", body)
               }
-      
+          
               # Replace consecutive newlines with <br><br> for normal text
               gsub(/\n+/, "\n\n", body)
-      
+          
               # Ensure that bullet points (*) are on their own line with exactly one blank line before and after
               gsub(/(\n)\* /, "\n* ", body)         # Normal bullet points
               gsub(/\n  \* /, "  * ", body)   # Sub-bullet points with 2 spaces (replace with non-breaking spaces)
               gsub(/\* /, " * ", body)              # Add a line before the bullet point
               gsub(/<br><br>\*/, "\n *", body)      # Remove redundant <br> after the bullet point
-      
+          
               # Format the hash as a link to the commit and create the table row
               print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commit/" hash "\">" hash "</a></td><td>" body "</td></tr>"
             }
           }')
-      
+          
           # Check if there are any valid commit bodies
           if [ -n "$commit_bodies" ]; then
             # Wrap the table around the commit rows
@@ -94,7 +94,7 @@ jobs:
 
             echo "Commit Bodies Table:"
             echo "$commit_table"
-            
+          
             # Save the commit table to the environment variable
             echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
             echo "$commit_table" >> $GITHUB_ENV
@@ -123,12 +123,5 @@ jobs:
         if: env.PR_NUMBER == '' && env.NO_COMMIT_BODIES != 'true'
         run: |
           gh pr create --base ${{ env.BASE_BRANCH }} --head ${{ env.BRANCH_NAME }} --title "Draft Pull Request from ${{ env.BRANCH_NAME }}" --body "${{ env.COMMIT_BODIES }}" --draft
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Add documentation label to the pull request
-        if: env.PR_NUMBER != '' && env.NO_COMMIT_BODIES != 'true'
-        run: |
-          gh pr edit $PR_NUMBER --add-label "documentation"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
