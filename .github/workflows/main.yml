@@ -1,4 +1,4 @@
-- name: Update PR with Commit Messages
+name: Update PR with Commit Messages
 
 on:
   push:
