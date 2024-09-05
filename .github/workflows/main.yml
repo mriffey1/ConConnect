@@ -125,10 +125,3 @@ jobs:
           gh pr create --base ${{ env.BASE_BRANCH }} --head ${{ env.BRANCH_NAME }} --title "Draft Pull Request from ${{ env.BRANCH_NAME }}" --body "${{ env.COMMIT_BODIES }}" --draft
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Add documentation label to the pull request
-        if: env.PR_NUMBER != '' && env.NO_COMMIT_BODIES != 'true'
-        run: |
-          gh pr edit $PR_NUMBER --add-label "documentation"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
