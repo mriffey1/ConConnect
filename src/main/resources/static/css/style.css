@@ -2,8 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 body, pre {
+    font-size: 1rem;
     font-family: 'Roboto', sans-serif;
-
+    color: #333333;
     margin: 0 auto;
 }
 table  {
@@ -12,7 +13,8 @@ table  {
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #1e3e7b;
+    color: #ffffff;
 }
 th, td {
     padding: 8px;
@@ -21,13 +23,12 @@ th, td {
     
 }
 #EventsTable {
-    background-color: #f2f2f2;
+    background-color: #EEF1F5;
     margin: 0 auto;
-    font-size: 13px;
 }
 .sold-out-image {
     position: relative;
-    background-color: #d8d8d8;
+    background-color: #f7f7f7;
 }
 .top{
     border-bottom: 1px solid #000;
@@ -44,7 +45,7 @@ th, td {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 30%;
-    opacity: 0.04;
+    opacity: 0.06;
     z-index: 1; /* Ensure the pseudo-element stays behind the row content */
 }
 
@@ -75,14 +76,20 @@ a:link {
 }
 
 a:visited {
+    color: #FFFFFF;
+    font-weight: bold;
     text-decoration: none;
 }
 
 a:hover {
+    color: #FFFFFF;
+    font-weight: bold;
     text-decoration: underline;
 }
 
 a:active {
+    color: #FFFFFF;
+    font-weight: bold;
     text-decoration: underline;
 }
 
