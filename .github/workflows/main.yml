@@ -37,30 +37,30 @@ jobs:
             split($0, parts, " ")
             hash = parts[1]
             body = substr($0, length(hash) + 2)
-          
-            # Collect the files changed (lines after the body, starting with M, A, D for modified, added, deleted)
-            files = ""
-            for (i = 2; i <= NF; i++) {
-              if ($i ~ /^[MAD]\s+/) {
-                files = files $i "<br>"
-              }
-            }
 
             # Remove leading/trailing spaces from the body
             sub(/^[ \t]+/, "", body)
             sub(/[ \t]+$/, "", body)
-          
-            # Check if the body and files are not empty
-            if (body !~ /^[[:space:]]*$/ && files != "") {
+
+            # Check if the body is not empty
+            if (body !~ /^[[:space:]]*$/) {
+              # Collect the files changed (lines after the body, starting with M, A, D for modified, added, deleted)
+              files = ""
+              for (i = 2; i <= NF; i++) {
+                if ($i ~ /^[MAD]\s+/) {
+                  files = files $i "<br>"
+                }
+              }
+
               # Replace consecutive newlines with <br><br> for normal text
               gsub(/\n+/, "\n\n", body)
-          
+
               # Ensure that bullet points (*) are on their own line with exactly one blank line before and after
               gsub(/(\n)\* /, "\n* ", body)         # Normal bullet points
               gsub(/\n  \* /, "  * ", body)         # Sub-bullet points with 2 spaces
               gsub(/\* /, " * ", body)              # Add a line before the bullet point
               gsub(/<br><br>\*/, "\n *", body)      # Remove redundant <br> after the bullet point
-          
+
               # Format the hash as a link to the commit and create the table row with a new column for changed files
               print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commit/" hash "\">" hash "</a></td><td>" body "</td><td>" files "</td></tr>"
             }
@@ -77,7 +77,7 @@ jobs:
           echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
           echo "$commit_table" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-        
+       
 
       - name: Find existing pull request
         id: find_pr
