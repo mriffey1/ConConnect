@@ -29,44 +29,45 @@ jobs:
       - name: Get commit message bodies with hashes
         id: get_commit_bodies
         run: |
-            repo_url=""
-            commit_bodies=$(git log origin/main..origin/documentation-updates --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
-            {
-              # Split the first line to separate the hash from the body
-              split($0, parts, " ")
-              hash = parts[1]
-              body = substr($0, length(hash) + 2)
-        
-              # Remove leading/trailing spaces
-              sub(/^[ \t]+/, "", body)
-              sub(/[ \t]+$/, "", body)
-        
-              # Check if the body is not empty
-              if (body !~ /^[[:space:]]*$/) {
-                # Replace consecutive newlines with <br><br> for normal text
-                gsub(/\n+/, "\n\n", body)
-        
-                # Ensure that bullet points (*) are on their own line with exactly one blank line before and after
-                gsub(/<br><br>\* /, "\n\n * ", body)   # Avoid extra <br> before a bullet point
-                gsub(/\* /, "\n \n * ", body)        # Add a line before the bullet point
-                gsub(/<br><br>\*/, "\n *", body)      # Remove redundant <br> after the bullet point
-        
-                # Format the hash as a link to the commit and create the table row
-                print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commit/" hash "\">" hash "</a></td><td>" body "</td></tr>"
-              }
-            }')
-        
-            # Wrap the table around the commit rows
-            commit_table="<table border=\"1\" cellpadding=\"5\" cellspacing=\"0\"><thead><tr><th>Commit Hash</th><th>Commit Body</th></tr></thead><tbody>"
-            commit_table+="$commit_bodies</tbody></table>"
-        
-            echo "Commit Bodies Table:"
-            echo "$commit_table"
-        
-            # Save the commit table to the environment variable
-            echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
-            echo "$commit_table" >> $GITHUB_ENV
-            echo "EOF" >> $GITHUB_ENV
+          repo_url=""
+          commit_bodies=$(git log origin/main..origin/documentation-updates --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          {
+          # Split the first line to separate the hash from the body
+          split($0, parts, " ")
+          hash = parts[1]
+          body = substr($0, length(hash) + 2)
+          
+          # Remove leading/trailing spaces
+          sub(/^[ \t]+/, "", body)
+          sub(/[ \t]+$/, "", body)
+          
+          # Check if the body is not empty
+          if (body !~ /^[[:space:]]*$/) {
+           # Replace consecutive newlines with <br><br> for normal text
+           gsub(/\n+/, "\n\n", body)
+          
+           # Ensure that bullet points (*) are on their own line with exactly one blank line before and after
+           gsub(/(\n)\* /, "\n* ", body)         # Normal bullet points
+           gsub(/\n  \* /, "  * ", body)   # Sub-bullet points with 2 spaces (replace with non-breaking spaces)
+           gsub(/\* /, " * ", body)              # Add a line before the bullet point
+           gsub(/<br><br>\*/, "\n *", body)           # Remove redundant <br> after the bullet point
+          
+           # Format the hash as a link to the commit and create the table row
+           print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commit/" hash "\">" hash "</a></td><td>" body "</td></tr>"
+          }
+          }')
+          
+          # Wrap the table around the commit rows
+          commit_table="<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\" width=\"100%\"><thead><tr><th width=\"25%\">Commit Hash</th><th width=\"75%\">Commit Body</th></tr></thead><tbody>"
+          commit_table+="$commit_bodies</tbody></table>"
+          
+          echo "Commit Bodies Table:"
+          echo "$commit_table"
+          
+          # Save the commit table to the environment variable
+          echo "COMMIT_BODIES<<EOF" >> $GITHUB_ENV
+          echo "$commit_table" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
           
 
       - name: Find existing pull request
