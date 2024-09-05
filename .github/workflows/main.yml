@@ -32,16 +32,13 @@ jobs:
           repo_url=""
           commit_data=$(git log origin/main..origin/documentation-updates --name-only --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
-            # Initialize variables for hash, body, and files
             hash = ""
             body = ""
             files_changed = ""
       
-            # Iterate over each line
             for (i = 1; i <= NF; i++) {
               line = $i
               
-              # If the line is a commit hash with the body (first line), extract the hash and body
               if (i == 1) {
                 split(line, parts, " ")
                 hash = parts[1]
@@ -49,13 +46,11 @@ jobs:
                 sub(/^[ \t]+/, "", body)  # Remove leading spaces
                 sub(/[ \t]+$/, "", body)  # Remove trailing spaces
               }
-              # Otherwise, it's a file name, so append it to the files_changed variable
               else if (line != "") {
                 files_changed = files_changed "<li>" line "</li>"
               }
             }
       
-            # If the commit body is not empty, format the body and files for the table
             if (body !~ /^[[:space:]]*$/) {
               # Replace consecutive newlines with <br><br> for normal text formatting
               gsub(/\n+/, "\n\n", body)
@@ -65,19 +60,16 @@ jobs:
               gsub(/\n  \* /, "  * ", body)         # Sub-bullet points with 2 spaces
               gsub(/\* /, " * ", body)              # Add a line before the bullet point
               
-              # Create the table row, adding the commit hash, body, and files
               print "<tr><td><a href=\"" repo_url "https://github.com/mriffey1/ConConnect/commit/" hash "\">" hash "</a></td><td>" body "</td><td><ul>" files_changed "</ul></td></tr>"
             }
           }')
           
-          # Wrap the table around the commit rows
           commit_table="<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\" width=\"100%\"><thead><tr><th width=\"25%\">Commit Hash</th><th width=\"50%\">Commit Body</th><th width=\"25%\">Files Changed</th></tr></thead><tbody>"
           commit_table+="$commit_data</tbody></table>"
           
           echo "Commit Table:"
           echo "$commit_table"
           
-          # Save the commit table to the environment variable
           echo "COMMIT_TABLE<<EOF" >> $GITHUB_ENV
           echo "$commit_table" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
