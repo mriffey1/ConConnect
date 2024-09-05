@@ -1,58 +1,41 @@
 package com.test.conconnect.model;
 
 public class Event {
-    String ageRequired;
-    String email;
-    String startDate;
-    String endDate;
-    Integer eventCost;
-    Integer eventDuration;
+    private String eventId;
+    private String eventTitle;
+    private String eventType;
+    private String gameSystem;
+    private int eventCost;
+    private String shortDescription;
+    private String eventLocation;
+    private String startDate;
+    private int ticketAvail;
 
-    public String getAgeRequired() {
-        return ageRequired;
-    }
+    // Getters and Setters
+    public String getEventId() { return eventId; }
+    public void setEventId(String eventId) { this.eventId = eventId; }
 
-    public void setAgeRequired(String ageRequired) {
-        this.ageRequired = ageRequired;
-    }
+    public String getEventTitle() { return eventTitle; }
+    public void setEventTitle(String eventTitle) { this.eventTitle = eventTitle; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEventType() { return eventType; }
+    public void setEventType(String eventType) { this.eventType = eventType; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String getGameSystem() { return gameSystem; }
+    public void setGameSystem(String gameSystem) { this.gameSystem = gameSystem; }
 
-    public String getStartDate() {
-        return startDate;
-    }
+    public int getEventCost() { return eventCost; }
+    public void setEventCost(int eventCost) { this.eventCost = eventCost; }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
+    public String getShortDescription() { return shortDescription; }
+    public void setShortDescription(String shortDescription) { this.shortDescription = shortDescription; }
 
-    public String getEndDate() {
-        return endDate;
-    }
+    public String getEventLocation() { return eventLocation; }
+    public void setEventLocation(String eventLocation) { this.eventLocation = eventLocation; }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
+    public String getStartDate() { return startDate; }
+    public void setStartDate(String startDate) { this.startDate = startDate; }
 
-    public Integer getEventCost() {
-        return eventCost;
-    }
-
-    public void setEventCost(Integer eventCost) {
-        this.eventCost = eventCost;
-    }
-
-    public Integer getEventDuration() {
-        return eventDuration;
-    }
-
-    public void setEventDuration(Integer eventDuration) {
-        this.eventDuration = eventDuration;
-    }
+    public int getTicketAvail() { return ticketAvail; }
+    public void setTicketAvail(int ticketAvail) { this.ticketAvail = ticketAvail; }
 }

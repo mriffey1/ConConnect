@@ -1,4 +1,9 @@
 package com.test.conconnect.repository;
 
-public class EventRepository {
+import com.test.conconnect.model.Event;
+
+import java.util.List;
+
+public interface EventRepository {
+    List<Event> getAllEvents();
 }
