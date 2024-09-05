@@ -41,7 +41,6 @@ public class FirebasePlugin implements Database {
             usersReference = FirebaseDatabase.getInstance().getReference("Users");
             eventsReference = FirebaseDatabase.getInstance().getReference("Events");
 
-            // Retrieve the last used user ID from the database and initialize userIdCounter accordingly
             usersReference.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -65,23 +64,24 @@ public class FirebasePlugin implements Database {
 
     @Override
     public void saveUser(User user) {
-        // Hash the password before saving
         String userId = generateUserId();
         String hashedPassword = passwordEncoder.encode(user.getPasswordHash());
 
         Map<String, Object> userData = new HashMap<>();
         userData.put("username", user.getUsername());
-        userData.put("password", hashedPassword); // Save hashed password to database
+        userData.put("password", hashedPassword);
         userData.put("email", user.getEmail());
 
-        // Save user data to the Realtime Database under "Users" node
         usersReference.child(userId).setValueAsync(userData);
+    }
+    private String generateUserId() {
+        return String.format("%06d", userIdCounter.getAndIncrement());
     }
 
     @Override
     public List<Event> getEvents() {
         List<Event> eventsList = new ArrayList<>();
-        CountDownLatch latch = new CountDownLatch(1); // Latch to wait for Firebase response
+        CountDownLatch latch = new CountDownLatch(1);
 
         eventsReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -90,27 +90,22 @@ public class FirebasePlugin implements Database {
                     Event event = snapshot.getValue(Event.class);
                     eventsList.add(event);
                 }
-                latch.countDown(); // Release the latch when data is fully loaded
+                latch.countDown();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 logger.error("Error occurred while retrieving events", databaseError.toException());
-                latch.countDown(); // Release the latch even if there's an error
+                latch.countDown();
             }
         });
 
         try {
-            latch.await(); // Wait until data is loaded
+            latch.await();
         } catch (InterruptedException e) {
             logger.error("Error occurred while waiting for event data", e);
         }
 
-        return eventsList; // Now it will return the fully populated list
-    }
-
-    private String generateUserId() {
-        // Generate a 6-digit auto-incrementing number
-        return String.format("%06d", userIdCounter.getAndIncrement());
+        return eventsList;
     }
 }
