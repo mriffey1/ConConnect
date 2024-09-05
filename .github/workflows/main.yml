@@ -31,7 +31,7 @@ jobs:
         id: get_commit_bodies
         run: |
           repo_url=""
-          commit_bodies=$(git log origin/main..origin/documentation-updates --name-status --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
+          commit_bodies=$(git log origin/main..origin/documentation-updates --name-only --pretty=format:"%h %b%n---END---" | awk 'BEGIN { RS="---END---"; FS="\n" }
           {
             # Split the first line to separate the hash from the body
             split($0, parts, " ")
@@ -44,12 +44,9 @@ jobs:
 
             # Only collect files and output rows if the body is not empty
             if (body !~ /^[[:space:]]*$/) {
-              # Collect the files changed (lines after the body, starting with M, A, D for modified, added, deleted)
               files = ""
               for (i = 2; i <= NF; i++) {
-                if ($i ~ /^[MAD]\s+/) {
                   files = files $i "<br>"
-                }
               }
 
               # Replace consecutive newlines with <br><br> for normal text
