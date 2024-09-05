@@ -1,4 +1,8 @@
 package com.test.conconnect.service;
 
-public class EventService {
+import com.test.conconnect.model.Event;
+import java.util.List;
+
+public interface EventService {
+    List<Event> getAllEvents();
 }

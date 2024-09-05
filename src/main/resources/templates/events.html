@@ -1,10 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:insert="~{fragments/header :: header}">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Events Data</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
+    <style>
+        /* Add loading spinner style */
+        .spinner {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            margin: 50px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Sold out row style */
+        .sold-out-image {
+            background-color: #f8d7da;
+        }
+    </style>
 </head>
 <body>
+<div th:include="~{fragments/navigation :: navigation}"></div>
 
+<!-- Loading Spinner -->
+<div class="container" th:if="${#lists.isEmpty(eventsData)}">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+</div>
+
+<!-- Events Table -->
+<div class="container" th:if="${not #lists.isEmpty(eventsData)}">
+    <table id="EventsTable" cellspacing="0" cellpadding="0">
+        <thead>
+        <tr data-sort-method="none">
+            <th>Event ID</th>
+            <th>Event Title</th>
+            <th>Event Type</th>
+            <th>Game System</th>
+            <th>Cost</th>
+            <th>Description</th>
+            <th>Time / Location</th>
+            <th>Ticket Availability</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="event : ${eventsData}" th:class="${event['ticketAvail'] == 0} ? 'sold-out-image' : ''">
+            <td th:text="${event['eventId']}"></td>
+            <td th:text="${event['eventTitle']}"></td>
+            <td th:text="${event['eventType']}"></td>
+            <td th:text="${event['gameSystem']}"></td>
+            <td th:text="${event['eventCost']}"></td>
+            <td th:text="${event['shortDescription']}"></td>
+            <td >
+                <div class="top" th:text="${event['eventLocation']}"></div>
+                <div class="bottom" th:text="${event['startDate']}"></div>
+            </td>
+            <td th:text="${event['ticketAvail']}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.1.0/tablesort.min.js"></script>
+
+<script>
+    function onPageReady() {
+        // Initialize tablesort when the page is ready
+        if (document.getElementById('EventsTable')) {
+            new Tablesort(document.getElementById('EventsTable'));
+        }
+    }
+
+    // Run the above function when the page is loaded and ready
+    onPageReady();
+
+</script>
 </body>
 </html>

@@ -4,6 +4,7 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.*;
+import com.test.conconnect.model.Event;
 import com.test.conconnect.model.User;
 import com.test.conconnect.repository.Database;
 import org.slf4j.Logger;
@@ -13,10 +14,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
@@ -25,7 +24,8 @@ public class FirebasePlugin implements Database {
     private final Logger logger = LoggerFactory.getLogger(FirebasePlugin.class);
     private final BCryptPasswordEncoder passwordEncoder;
 
-    private DatabaseReference databaseReference;
+    private DatabaseReference usersReference;
+    private DatabaseReference eventsReference;
 
     public FirebasePlugin(BCryptPasswordEncoder passwordEncoder) {
         try {
@@ -38,10 +38,11 @@ public class FirebasePlugin implements Database {
 
             FirebaseApp.initializeApp(options);
 
-            databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+            usersReference = FirebaseDatabase.getInstance().getReference("Users");
+            eventsReference = FirebaseDatabase.getInstance().getReference("Events");
 
             // Retrieve the last used user ID from the database and initialize userIdCounter accordingly
-            databaseReference.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
+            usersReference.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -74,32 +75,42 @@ public class FirebasePlugin implements Database {
         userData.put("email", user.getEmail());
 
         // Save user data to the Realtime Database under "Users" node
-        databaseReference.child(userId).setValueAsync(userData);
+        usersReference.child(userId).setValueAsync(userData);
     }
 
-    private String generateUserId() {
-        // Generate a 5-digit auto-incrementing number
-        return String.format("%06d", userIdCounter.getAndIncrement());
-    }
+    @Override
+    public List<Event> getEvents() {
+        List<Event> eventsList = new ArrayList<>();
+        CountDownLatch latch = new CountDownLatch(1); // Latch to wait for Firebase response
 
-    public List<Map<String, Object>> getEvents() {
-        List<Map<String, Object>> eventsList = new ArrayList<>();
-        DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("Events");
-
-        eventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        eventsReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Map<String, Object> event = (Map<String, Object>) snapshot.getValue();
+                    Event event = snapshot.getValue(Event.class);
                     eventsList.add(event);
                 }
+                latch.countDown(); // Release the latch when data is fully loaded
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                logger.error("Error occurred while retrieving events from database", databaseError.toException());
+                logger.error("Error occurred while retrieving events", databaseError.toException());
+                latch.countDown(); // Release the latch even if there's an error
             }
         });
-        return eventsList;  // Return events after retrieval
+
+        try {
+            latch.await(); // Wait until data is loaded
+        } catch (InterruptedException e) {
+            logger.error("Error occurred while waiting for event data", e);
+        }
+
+        return eventsList; // Now it will return the fully populated list
+    }
+
+    private String generateUserId() {
+        // Generate a 6-digit auto-incrementing number
+        return String.format("%06d", userIdCounter.getAndIncrement());
     }
 }
