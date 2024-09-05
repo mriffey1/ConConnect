@@ -1,11 +1,9 @@
-name: Update PR with Commit Messages
+name: Create/Update Pull Requests
 
 on:
-  push:
+  workflow_dispatch:
     branches-ignore:
       - main  # Exclude main branch
-
-  workflow_dispatch:  # Allows manual triggering of the workflow
 
 jobs:
   update_pr:
