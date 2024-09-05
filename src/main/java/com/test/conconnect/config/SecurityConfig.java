@@ -1,4 +1,4 @@
-package com.test.conventionapp.config;
+package com.test.conconnect.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

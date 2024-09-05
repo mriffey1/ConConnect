@@ -1,6 +1,6 @@
-package com.test.conventionapp.controller;
+package com.test.conconnect.controller;
 
-import com.test.conventionapp.service.EventService;
+import com.test.conconnect.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 

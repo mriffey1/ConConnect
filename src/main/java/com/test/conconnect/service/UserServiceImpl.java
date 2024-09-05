@@ -1,7 +1,7 @@
-package com.test.conventionapp.service;
+package com.test.conconnect.service;
 
-import com.test.conventionapp.model.User;
-import com.test.conventionapp.repository.UserRepository;
+import com.test.conconnect.model.User;
+import com.test.conconnect.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

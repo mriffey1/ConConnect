@@ -1,11 +1,11 @@
-package com.test.conventionapp.plugin;
+package com.test.conconnect.plugin;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.*;
-import com.test.conventionapp.model.User;
-import com.test.conventionapp.repository.Database;
+import com.test.conconnect.model.User;
+import com.test.conconnect.repository.Database;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,7 +13,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -27,7 +29,7 @@ public class FirebasePlugin implements Database {
 
     public FirebasePlugin(BCryptPasswordEncoder passwordEncoder) {
         try {
-            FileInputStream serviceAccount = new FileInputStream("C:\\Users\\akira\\Documents\\New folder (4)\\ConventionWebApp\\db.json");
+            FileInputStream serviceAccount = new FileInputStream("C:\\Users\\akira\\Documents\\New folder (4)\\ConConnect\\db.json");
 
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -78,5 +80,26 @@ public class FirebasePlugin implements Database {
     private String generateUserId() {
         // Generate a 5-digit auto-incrementing number
         return String.format("%06d", userIdCounter.getAndIncrement());
+    }
+
+    public List<Map<String, Object>> getEvents() {
+        List<Map<String, Object>> eventsList = new ArrayList<>();
+        DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("Events");
+
+        eventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Map<String, Object> event = (Map<String, Object>) snapshot.getValue();
+                    eventsList.add(event);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                logger.error("Error occurred while retrieving events from database", databaseError.toException());
+            }
+        });
+        return eventsList;  // Return events after retrieval
     }
 }

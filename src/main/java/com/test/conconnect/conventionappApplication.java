@@ -1,4 +1,4 @@
-package com.test.conventionapp;
+package com.test.conconnect;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
