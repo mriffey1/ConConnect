@@ -1,4 +1,4 @@
-package com.test.conconnect.model;
+package com.test.conconnect.model.user;
 
 
 public class User {

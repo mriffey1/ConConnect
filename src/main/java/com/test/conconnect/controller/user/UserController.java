@@ -1,6 +1,6 @@
-package com.test.conconnect.controller;
+package com.test.conconnect.controller.user;
 
-import com.test.conconnect.service.UserService;
+import com.test.conconnect.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

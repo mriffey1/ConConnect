@@ -1,7 +1,7 @@
-package com.test.conconnect.service;
+package com.test.conconnect.service.event;
 
-import com.test.conconnect.model.Event;
-import com.test.conconnect.repository.EventRepository;
+import com.test.conconnect.model.event.Event;
+import com.test.conconnect.repository.event.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

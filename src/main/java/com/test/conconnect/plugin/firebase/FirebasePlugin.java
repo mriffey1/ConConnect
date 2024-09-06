@@ -1,11 +1,11 @@
-package com.test.conconnect.plugin;
+package com.test.conconnect.plugin.firebase;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.*;
-import com.test.conconnect.model.Event;
-import com.test.conconnect.model.User;
+import com.test.conconnect.model.event.Event;
+import com.test.conconnect.model.user.User;
 import com.test.conconnect.repository.Database;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

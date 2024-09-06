@@ -1,6 +1,6 @@
-package com.test.conconnect.service;
+package com.test.conconnect.service.api;
 
-import com.test.conconnect.plugin.FirebasePlugin;
+import com.test.conconnect.plugin.firebase.FirebasePlugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
