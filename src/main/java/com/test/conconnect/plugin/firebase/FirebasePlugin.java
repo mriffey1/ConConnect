@@ -18,7 +18,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
@@ -85,6 +87,41 @@ public class FirebasePlugin implements Database {
     private String generateUserId() {
         return String.format("%06d", userIdCounter.getAndIncrement());
     }
+
+
+    @Override
+    public boolean isUsernameExists(String username, String email) throws ExecutionException, InterruptedException {
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
+
+        usersReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean exists = false;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User user = snapshot.getValue(User.class);
+                    if (user != null && (user.getUsername().equalsIgnoreCase(username) || user.getEmail().equalsIgnoreCase(email))) {
+                        exists = true;
+                        break;
+                    }
+                }
+                future.complete(exists);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                future.completeExceptionally(databaseError.toException());
+            }
+        });
+
+        return future.get();
+    }
+
+
+
+
+
+
+
 
     @Override
     public List<Event> getEvents() {
@@ -215,6 +252,7 @@ public class FirebasePlugin implements Database {
         return isDeleted[0];
     }
 
+    @Override
     public List<Object> searchEvents(String field, String contains) {
         List<Object> results = new ArrayList<>();
         CountDownLatch latch = new CountDownLatch(1);
