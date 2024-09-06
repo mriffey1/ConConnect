@@ -1,0 +1,54 @@
+name: Update Changelog
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update_changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Ensure CHANGELOG.md exists
+        run: |
+          if [ ! -f CHANGELOG.md ]; then
+            echo "# Changelog" > CHANGELOG.md
+          fi
+
+      - name: Set Git identity
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Fetch merged PRs into main
+        id: pr_details
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Make sure GH_TOKEN is set to the GitHub token
+        run: |
+          # Fetch only merged PRs into the main branch
+          PR_LIST=$(gh pr list --state merged --base main --json number,title,body --jq '.[] | "\(.number): \(.title) \(.body)"')
+          echo "$PR_LIST"
+
+      - name: Append PR descriptions to CHANGELOG.md
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Ensure GH_TOKEN is available here as well
+        run: |
+          # Append the list of merged PRs into the changelog
+          PR_LIST=$(gh pr list --state merged --base main --json number,title,body --jq '.[] | "\(.number): \(.title) \(.body)"')
+          echo "Appending the following merged PRs to CHANGELOG.md:"
+          echo "$PR_LIST"
+          echo "$PR_LIST" >> CHANGELOG.md
+
+      - name: Create new branch and commit changelog
+        run: |
+          git checkout -b update-changelog-${{ github.run_id }}
+          git add CHANGELOG.md
+          git commit -m "Update changelog"
+
+      - name: Push changes to the new branch
+        run: |
+          git push origin update-changelog-${{ github.run_id }}
+
+
