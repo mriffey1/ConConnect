@@ -44,22 +44,22 @@ The goal is to create an open-sourced modular convention application with plugin
 <details><summary>User Registration and Management</summary>
 
 - [ ] **User Registration**
-  - [ ] User Creation (via REST API: `POST /api/users`)
+  - [ ] User Creation (via REST API: `POST /api/user`)
   - [ ] User Login (via REST API: `POST /api/auth/login`)
   - [ ] **User Password Encryption**
-    - [ ] Custom Username: Check to ensure the username does not exist (via REST API: `GET /api/users/{username}/exists`).
-    - [ ] Create user in the database (via REST API: `POST /api/users`).
+    - [ ] Custom Username: Check to ensure the username does not exist (via REST API: `GET /api/user/{username}/exists`).
+    - [ ] Create user in the database (via REST API: `POST /api/user`).
     - [ ] Hash password/security features.
     - [ ] Include user data fields: First Name, Last Name, Pronouns, Email Address, Password (with confirmation), Mailing Address, Phone Number.
     - [ ] Sign-up button to submit registration (triggers the REST API).
 - [ ] **User Profile Maintenance**
-  - [ ] Profile landing page (via REST API: `GET /api/users/{userId}`).
-  - [ ] Ability to change password, update pronouns, add/update profile picture (via REST API: `PUT /api/users/{userId}`).
-  - [ ] Update mailing address and phone number (via REST API: `PUT /api/users/{userId}/update-address`).
+  - [ ] Profile landing page (via REST API: `GET /api/user/{userId}`).
+  - [ ] Ability to change password, update pronouns, add/update profile picture (via REST API: `PUT /api/user/{userId}`).
+  - [ ] Update mailing address and phone number (via REST API: `PUT /api/user/{userId}/update-address`).
 - [ ] **User Roles**
-  - [ ] Add custom roles (via REST API: `POST /api/users/roles`).
-  - [ ] Set permissions of custom roles (via REST API: `PUT /api/users/roles/{roleId}/permissions`).
-  - [ ] Dropdown with roles and associated permissions (via REST API: `GET /api/users/roles`).
+  - [ ] Add custom roles (via REST API: `POST /api/user/roles`).
+  - [ ] Set permissions of custom roles (via REST API: `PUT /api/user/roles/{roleId}/permissions`).
+  - [ ] Dropdown with roles and associated permissions (via REST API: `GET /api/user/roles`).
 
 </details>
 
@@ -67,19 +67,19 @@ The goal is to create an open-sourced modular convention application with plugin
 
 <details><summary>Events</summary>
 
-- [ ] **Create Events** (via REST API: `POST /api/events`)
-- [ ] **Modify Events** (via REST API: `PUT /api/events/{eventId}`)
-- [ ] **Delete Events** (via REST API: `DELETE /api/events/{eventId}`)
-- [ ] **Electronic Event Tickets** (via REST API: `GET /api/events/{eventId}/tickets`)
+- [ ] **Create Events** (via REST API: `POST /api/event`)
+- [ ] **Modify Events** (via REST API: `PUT /api/event/{eventId}`)
+- [ ] **Delete Events** (via REST API: `DELETE /api/event/{eventId}`)
+- [ ] **Electronic Event Tickets** (via REST API: `GET /api/event/{eventId}/tickets`)
   - [ ] Attach electronic tickets to user badges (via REST API: `POST /api/tickets/{ticketId}/attach-to-badge`).
 - [ ] **QR Codes for Event (Attendee)**
-  - [ ] Generate and manage QR codes for electronic tickets (via REST API: `GET /api/events/{eventId}/qr-code`).
+  - [ ] Generate and manage QR codes for electronic tickets (via REST API: `GET /api/event/{eventId}/qr-code`).
 - [ ] **Printed Event Tickets**
-  - [ ] Provide options for printing event tickets (via REST API: `GET /api/events/{eventId}/print-tickets`).
+  - [ ] Provide options for printing event tickets (via REST API: `GET /api/event/{eventId}/print-tickets`).
 - [ ] **QR Code Scanner for Event (Organizers)**
-  - [ ] Dashboard for organizers to scan QR codes; ability to see who is still missing in real-time (via REST API: `GET /api/events/{eventId}/attendees`).
+  - [ ] Dashboard for organizers to scan QR codes; ability to see who is still missing in real-time (via REST API: `GET /api/event/{eventId}/attendees`).
 - [ ] **Payments**
-  - [ ] Integration with various payment systems for processing transactions (via REST API: `POST /api/payments`).
+  - [ ] Integration with various payment systems for processing transactions (via REST API: `POST /api/payment`).
 
 </details>
 
