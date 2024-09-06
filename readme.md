@@ -40,79 +40,112 @@ The goal is to create an open-sourced modular convention application with plugin
 <hr>
 
 #### Core Functionality
+
 <details><summary>User Registration and Management</summary>
 
 - [ ] **User Registration**
-  - [ ] User Creation
-  - [ ] User Login
+  - [ ] User Creation (via REST API: `POST /api/users`)
+  - [ ] User Login (via REST API: `POST /api/auth/login`)
   - [ ] **User Password Encryption**
-    - [ ] Custom Username: Check to ensure the username does not exist.
-    - [ ] Create user in the database.
+    - [ ] Custom Username: Check to ensure the username does not exist (via REST API: `GET /api/users/{username}/exists`).
+    - [ ] Create user in the database (via REST API: `POST /api/users`).
     - [ ] Hash password/security features.
     - [ ] Include user data fields: First Name, Last Name, Pronouns, Email Address, Password (with confirmation), Mailing Address, Phone Number.
-    - [ ] Sign-up button to submit registration.
+    - [ ] Sign-up button to submit registration (triggers the REST API).
 - [ ] **User Profile Maintenance**
-  - [ ] Profile landing page
-  - [ ] Ability to change password, update pronouns, add/update profile picture.
-  - [ ] Update mailing address and phone number.
+  - [ ] Profile landing page (via REST API: `GET /api/users/{userId}`).
+  - [ ] Ability to change password, update pronouns, add/update profile picture (via REST API: `PUT /api/users/{userId}`).
+  - [ ] Update mailing address and phone number (via REST API: `PUT /api/users/{userId}/update-address`).
 - [ ] **User Roles**
-  - [ ] Add custom roles
-  - [ ] Set permissions of custom roles
-  - [ ] Dropdown with roles and associated permissions.
+  - [ ] Add custom roles (via REST API: `POST /api/users/roles`).
+  - [ ] Set permissions of custom roles (via REST API: `PUT /api/users/roles/{roleId}/permissions`).
+  - [ ] Dropdown with roles and associated permissions (via REST API: `GET /api/users/roles`).
 
 </details>
 
 #### Plugin Features
+
 <details><summary>Events</summary>
 
-- [ ] Create Events
-- [ ] Modify Events
-- [ ] Delete Events
-- [ ] **Electronic Event Tickets**
-  - [ ] Attach electronic tickets to user badges.
+- [ ] **Create Events** (via REST API: `POST /api/events`)
+- [ ] **Modify Events** (via REST API: `PUT /api/events/{eventId}`)
+- [ ] **Delete Events** (via REST API: `DELETE /api/events/{eventId}`)
+- [ ] **Electronic Event Tickets** (via REST API: `GET /api/events/{eventId}/tickets`)
+  - [ ] Attach electronic tickets to user badges (via REST API: `POST /api/tickets/{ticketId}/attach-to-badge`).
 - [ ] **QR Codes for Event (Attendee)**
-  - [ ] Generate and manage QR codes for electronic tickets.
+  - [ ] Generate and manage QR codes for electronic tickets (via REST API: `GET /api/events/{eventId}/qr-code`).
 - [ ] **Printed Event Tickets**
-  - [ ] Provide options for printing event tickets.
+  - [ ] Provide options for printing event tickets (via REST API: `GET /api/events/{eventId}/print-tickets`).
 - [ ] **QR Code Scanner for Event (Organizers)**
-  - [ ] Dashboard for organizers to scan QR codes; ability to see who is still missing in real-time.
+  - [ ] Dashboard for organizers to scan QR codes; ability to see who is still missing in real-time (via REST API: `GET /api/events/{eventId}/attendees`).
 - [ ] **Payments**
-  - [ ] Integration with various payment systems for processing transactions.
-
+  - [ ] Integration with various payment systems for processing transactions (via REST API: `POST /api/payments`).
 
 </details>
+
+#### REST API Functionality
+<details><summary>API Endpoints Overview</summary>
+
+- [ ] **Users**
+  - [ ] `GET /api/users` - Get all users.
+  - [ ] `GET /api/users/{userId}` - Get user by ID.
+  - [ ] `POST /api/users` - Create a new user.
+  - [ ] `PUT /api/users/{userId}` - Update an existing user.
+  - [ ] `DELETE /api/users/{userId}` - Delete a user.
+
+- [ ] **Authentication**
+  - [ ] `POST /api/auth/login` - Authenticate user credentials and return a token.
+  - [ ] `POST /api/auth/logout` - Invalidate user session/token.
+
+- [ ] **Events**
+  - [ ] `GET /api/events` - Get all events.
+  - [ ] `GET /api/events/{eventId}` - Get event details by ID.
+  - [ ] `POST /api/events` - Create a new event.
+  - [ ] `PUT /api/events/{eventId}` - Update an event.
+  - [ ] `DELETE /api/events/{eventId}` - Delete an event.
+
+- [ ] **Tickets**
+  - [ ] `GET /api/events/{eventId}/tickets` - Get tickets for an event.
+  - [ ] `POST /api/tickets/{ticketId}/attach-to-badge` - Attach tickets to user badge.
+
+- [ ] **Payments**
+  - [ ] `POST /api/payments` - Process a payment for an event or service.
+
+</details>
+
+#### Database
 
 <details><summary>Database</summary>
 
-- [ ] Firebase Plugin
-- [ ] MySQL Plugin
- 
-</details>
- 
-<details><summary>Exhibitors</summary>
-
-- [ ] Automated QR Code Creation
-- [ ] QR Code Scanner
-- [ ] Exhibitor Profile
-- [ ] Tools and systems for managing exhibitor information and activities.
+- [ ] **Firebase Plugin** (via REST API: interacts with Firebase for user and event data)
+  - [ ] `GET /api/events` to retrieve events from Firebase.
+  - [ ] `POST /api/events` to create a new event in Firebase.
+- [ ] **MySQL Plugin** (via REST API: interacts with MySQL for user and event data)
+  - [ ] Similar endpoints available for MySQL-based operations.
 
 </details>
 
-<details><summary>Awards</summary>
+#### Exhibitors
+<details><summary>Exhibitor Management</summary>
 
-- [ ] Categories
-- [ ] Nominations
-- [ ] Voting
+- [ ] **Automated QR Code Creation** (via REST API: `POST /api/exhibitors/{exhibitorId}/qr-code`)
+- [ ] **QR Code Scanner** (via REST API: `GET /api/exhibitors/{exhibitorId}/scan`)
+- [ ] **Exhibitor Profile**
+  - [ ] View and manage exhibitor profiles (via REST API: `GET /api/exhibitors/{exhibitorId}`)
+  - [ ] Update exhibitor details (via REST API: `PUT /api/exhibitors/{exhibitorId}`)
+- [ ] Tools and systems for managing exhibitor information and activities (via REST API: `POST /api/exhibitors`).
+
+</details>
+
+#### Awards
+<details><summary>Awards Management</summary>
+
+- [ ] **Categories** (via REST API: `GET /api/awards/categories`)
+- [ ] **Nominations** (via REST API: `POST /api/awards/{categoryId}/nominations`)
+- [ ] **Voting** (via REST API: `POST /api/awards/{awardId}/vote`)
 
 </details>
 
-#### Data Validation
-<details><summary>Validation Across Features</summary>
-
-- [ ] **Object Validation**
-  - [ ] Ensure all data fields across Events, Users, and Database categories are validated and follow predefined rules and standards.
-
-</details>
 
 
 <hr>
