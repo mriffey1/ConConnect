@@ -48,11 +48,3 @@ jobs:
         run: |
           git push origin update-changelog-${{ github.run_id }}
 
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: update-changelog-${{ github.run_id }}
-          title: "Update Changelog"
-          body: "This PR updates the changelog with recent changes."
-          base: main
