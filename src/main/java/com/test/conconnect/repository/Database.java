@@ -6,6 +6,13 @@ import com.test.conconnect.model.User;
 import java.util.List;
 
 public interface Database {
-    void saveUser(User user);
+    // Methods for event CRUD operations
     List<Event> getEvents();
+    Event getEventById(String eventId);
+    Event createEvent(Event event);
+    Event updateEvent(String eventId, Event updatedEvent);
+    boolean deleteEvent(String eventId);
+
+    // Methods for user functionality
+    void saveUser(User user);
 }

@@ -2,8 +2,6 @@ package com.test.conconnect.repository;
 
 import com.test.conconnect.model.Event;
 import com.test.conconnect.plugin.FirebasePlugin;
-import com.test.conconnect.repository.Database;
-import com.test.conconnect.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +19,26 @@ public class EventRepositoryImpl implements EventRepository {
 
     @Override
     public List<Event> getAllEvents() {
-        return database.getEvents(); //
+        return database.getEvents();
+    }
+
+    @Override
+    public Event getEventById(String eventId) {
+        return database.getEventById(eventId);
+    }
+
+    @Override
+    public Event createEvent(Event event) {
+        return database.createEvent(event);
+    }
+
+    @Override
+    public Event updateEvent(String eventId, Event event) {
+        return database.updateEvent(eventId, event);
+    }
+
+    @Override
+    public boolean deleteEvent(String eventId) {
+        return database.deleteEvent(eventId);
     }
 }
