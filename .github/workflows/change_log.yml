@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Ensure CHANGELOG.md exists
         run: |
@@ -27,6 +27,8 @@ jobs:
         run: |
           PR_LIST=$(gh pr list --state closed --base main --json number,title,body --jq '.[] | "\(.number): \(.title) \(.body)"')
           echo "$PR_LIST" > pr_list.txt
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Append PR descriptions to CHANGELOG.md
         run: |
