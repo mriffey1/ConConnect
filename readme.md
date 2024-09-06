@@ -103,6 +103,13 @@ The goal is to create an open-sourced modular convention application with plugin
   - [ ] `POST /api/events` - Create a new event.
   - [ ] `PUT /api/events/{eventId}` - Update an event.
   - [ ] `DELETE /api/events/{eventId}` - Delete an event.
+  - [ ] `GET /api/search` - Search for events based on specific fields and criteria.
+    - **Query Parameters**:
+      - `entity`: The type of entity to search (e.g., `event`).
+      - `field`: The field to search (e.g., `shortDescription`).
+      - `contains`: The value to search for (e.g., part of the `shortDescription`).
+    - **Example**: `/api/search?entity=event&field=shortDescription&contains=dog`
+
 
 - [ ] **Tickets**
   - [ ] `GET /api/events/{eventId}/tickets` - Get tickets for an event.
