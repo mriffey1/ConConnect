@@ -157,9 +157,18 @@ public class FirebaseEventPlugin {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Event event = snapshot.getValue(Event.class);
-                    if (event != null && field.equalsIgnoreCase("shortDescription")
-                            && event.getShortDescription().toLowerCase().contains(contains.toLowerCase())) {
-                        results.add(event);
+                    if (event != null) {
+                        try {
+                            // Use reflection to get the field value
+                            String fieldValue = (String) Event.class.getDeclaredMethod("get" + capitalize(field)).invoke(event);
+
+                            // Check if the field value contains the search term
+                            if (fieldValue != null && fieldValue.toLowerCase().contains(contains.toLowerCase())) {
+                                results.add(event);
+                            }
+                        } catch (Exception e) {
+                            logger.error("Error retrieving field value for search", e);
+                        }
                     }
                 }
                 latch.countDown();
@@ -180,4 +189,12 @@ public class FirebaseEventPlugin {
 
         return results;
     }
+
+    private String capitalize(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
 }

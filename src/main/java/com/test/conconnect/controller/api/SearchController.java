@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/search")
-@Tag(name = "Search API", description = "Generic search API for multiple entities")
+@Tag(name = "Search API", description = "Search or Filter by Entity")
 public class SearchController {
 
     private final GenericSearchService searchService;
@@ -29,6 +29,7 @@ public class SearchController {
             @RequestParam("contains") String contains) {
 
         List<Object> results = searchService.search(entity, field, contains);
+        System.out.println(results);
         return ResponseEntity.ok(results);
     }
 }

@@ -18,4 +18,5 @@ public interface Database {
     boolean isUsernameExists(String username, String email) throws ExecutionException, InterruptedException;
 
     List<Object> searchEvents(String field, String contains);
+
 }
