@@ -4,15 +4,18 @@ import com.test.conconnect.model.event.Event;
 import com.test.conconnect.model.user.User;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public interface Database {
-    // Methods for event CRUD operations
+
     List<Event> getEvents();
     Event getEventById(String eventId);
     Event createEvent(Event event);
     Event updateEvent(String eventId, Event updatedEvent);
     boolean deleteEvent(String eventId);
 
-    // Methods for user functionality
     void saveUser(User user);
+    boolean isUsernameExists(String username, String email) throws ExecutionException, InterruptedException;
+
+    List<Object> searchEvents(String field, String contains);
 }
