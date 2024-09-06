@@ -1,0 +1,787 @@
+26: PR updated readme file <table border=0 cellpadding=5 cellspacing=0 width=100%><thead><tr><th width=40%>Commit Hash</th><th width=60%>Commit Body</th></tr></thead><tbody><tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/93c7693>93c7693</a></td><td> 
+
+* Added REST API endpoints to documentation
+
+ * Created section for REST API Functionality
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/b977814>b977814</a></td><td>Update main.yml
+
+</td></tr>
+
+</tbody></table>
+25: Draft Pull Request from documentation-updates <table border=0 cellpadding=5 cellspacing=0 width=100%><thead><tr><th width=40%>Commit Hash</th><th width=60%>Commit Body</th></tr></thead><tbody><tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/b977814>b977814</a></td><td>Update main.yml
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/4874909>4874909</a></td><td>updated widths
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/4705b04>4705b04</a></td><td>this is a test
+
+</td></tr></tbody></table>
+23: Update main.yml 
+21: Draft Pull Request from documentation-updates <table border=0 cellpadding=5 cellspacing=0 width=100%><thead><tr><th width=40%>Commit Hash</th><th width=60%>Commit Body</th></tr></thead><tbody><tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/4874909>4874909</a></td><td>updated widths
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/4705b04>4705b04</a></td><td>this is a test
+
+</td></tr></tbody></table>
+20: Draft Pull Request from documentation-updates <table border=0 cellpadding=5 cellspacing=0 width=100%><thead><tr><th width=25%>Commit Hash</th><th width=75%>Commit Body</th></tr></thead><tbody></tbody></table>
+19: Draft Pull Request from documentation-updates <table border=0 cellpadding=5 cellspacing=0 width=100%><thead><tr><th width=25%>Commit Hash</th><th width=75%>Commit Body</th></tr></thead><tbody><tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/4ae204f>4ae204f</a></td><td>This reverts commit cb9b23e3
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/ed35d09>ed35d09</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/9f0c7c1>9f0c7c1</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/cb9b23e>cb9b23e</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/cac3b9e>cac3b9e</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/809585a>809585a</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/adae158>adae158</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/57ca8ed>57ca8ed</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/225b141>225b141</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/90d07e6>90d07e6</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/58cf5f2>58cf5f2</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/610dbf7>610dbf7</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * <b>#User-Registration-and-Management</b>
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * <b>#Events</b>
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/0e6f859>0e6f859</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/80ee6e7>80ee6e7</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/2415066>2415066</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/blob/main/https://github.com/mriffey1/ConConnect/commit/32cf949>32cf949</a></td><td>Updated the following in <a href=https://github.com/mriffey1/ConConnect/blob/main/readme.md>readme.md</a>:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr></tbody></table>
+18: Draft Pull Request from documentation-updates <table border=0 cellpadding=5 cellspacing=0 width=100%><thead><tr><th width=15%>Commit Hash</th><th width=60%>Commit Body</th><th width=25%>Files Changed</th></tr></thead><tbody><tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+1a3d730 
+
+</td><td>.github/workflows/main.yml<br>1a3d730 <br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+0f82495 
+
+</td><td>.github/workflows/main.yml<br>0f82495 <br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+6041bf3 
+
+</td><td>.github/workflows/main.yml<br>6041bf3 <br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+093326f 
+
+</td><td>.github/workflows/main.yml<br>093326f <br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+eaddd38 
+
+</td><td>.github/workflows/main.yml<br>eaddd38 <br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+50f8b96 
+
+</td><td>.github/workflows/main.yml<br>50f8b96 <br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+fa931c7 
+
+</td><td>.github/workflows/main.yml<br>fa931c7 <br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+ed35d09 Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>ed35d09 Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+9f0c7c1 Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>9f0c7c1 Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+cb9b23e Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>cb9b23e Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+cac3b9e Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>cac3b9e Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+809585a Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>809585a Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+adae158 Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>adae158 Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+57ca8ed Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>57ca8ed Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+225b141 Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>225b141 Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+90d07e6 Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>90d07e6 Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+58cf5f2 Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>58cf5f2 Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+610dbf7 Updated the following in readme.md:
+
+ * <b>#User-Registration-and-Management</b>
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * <b>#Events</b>
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>610dbf7 Updated the following in readme.md:<br>* <b>#User-Registration-and-Management</b><br>* <b>#Events</b><br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+0e6f859 Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>0e6f859 Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+80ee6e7 Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>80ee6e7 Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+2415066 Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>2415066 Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/.github/workflows/main.yml>.github/workflows/main.yml</a></td><td>
+
+32cf949 Updated the following in readme.md:
+
+ * #User-Registration-and-Management
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+ * #Events
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td><td>.github/workflows/main.yml<br>32cf949 Updated the following in readme.md:<br>* #User-Registration-and-Management<br>* #Events<br></td></tr></tbody></table>
+17: Created PR Workflow and updated documentation <table border=0 cellpadding=5 cellspacing=0 width=100%><thead><tr><th width=25%>Commit Hash</th><th width=75%>Commit Body</th></tr></thead><tbody><tr><td><a href=https://github.com/mriffey1/ConConnect/commit/3de25fc>3de25fc</a></td><td>Updated the following in readme.md:
+
+
+ 
+ * **#User-Registration-and-Management**
+   * Bolded <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Password Encryption</i>
+   * Added check boxes to sub-list under <i>User Profile Maintenance</i>
+   * Added check boxes to sub-list under <i>User Roles</i>
+
+
+ * **#Events**
+   * Created headings for <i>Electronic Event Tickets</i>, <i>QR Codes for Event (Attendee)</i>, <i>Printed Event Tickets</i>, <i>QR Code Scanner for Event (Organizer)</i>, and <i>Payments</i>
+   * Added check boxes for the sub-items for the above headers
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/37548ed>37548ed</a></td><td>Updated to stretch table on PR
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/5132eeb>5132eeb</a></td><td>
+ 
+ * Updated workflow to reflect adding documentation label to PR
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/9e8f281>9e8f281</a></td><td>- Updated repo name
+
+</td></tr></tbody></table>
+16: Draft Pull Request from doc-updates <table border=1 cellpadding=5 cellspacing=0><thead><tr><th>Commit Hash</th><th>Commit Body</th></tr></thead><tbody><tr><td><a href=https://github.com/mriffey1/ConConnect/commit/519d7b6>519d7b6</a></td><td>updated this
+
+
+
+
+ 
+ * test
+
+
+
+meow
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/146d05a>146d05a</a></td><td>updated this
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/e35a1e4>e35a1e4</a></td><td>2024
+
+2023
+
+2025
+
+
+ 
+ * 2028
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/8dca390>8dca390</a></td><td>2024
+
+2023
+
+2025
+
+<br>
+
+
+ 
+ * 2028
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/157abde>157abde</a></td><td>2024
+
+2023
+
+2025
+
+
+ 
+ * 2028
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/ac38927>ac38927</a></td><td>2024
+
+2023
+
+2022
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/1bde623>1bde623</a></td><td># Conflicts:
+
+#	.github/workflows/pr-doc-updates.yml
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/b81e8bb>b81e8bb</a></td><td>2024
+
+2023
+
+2022
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/14016e5>14016e5</a></td><td>2024
+
+2023
+
+2022
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/bd2ba1f>bd2ba1f</a></td><td>2024
+
+2023
+
+2022
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/fd720f2>fd720f2</a></td><td>2024
+
+2023
+
+2022
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/ee0e1c0>ee0e1c0</a></td><td>hello world123
+
+123sdaf
+
+meowgic
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/951a03c>951a03c</a></td><td>hello world123
+
+123sdaf
+
+meowgic
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/0ac0fd1>0ac0fd1</a></td><td>hello world123
+
+123sdaf
+
+meowgic
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/be0bf7f>be0bf7f</a></td><td>hello world123
+
+123sdaf
+
+meowgic
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/5a9b472>5a9b472</a></td><td>hello world123
+
+123sdaf
+
+this is megan 123
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/d06999c>d06999c</a></td><td>hello world123
+
+123sdaf
+
+this is megan
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/9a41b2f>9a41b2f</a></td><td>hello world123
+
+123sdaf
+
+this is megan
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/596cf3d>596cf3d</a></td><td>hello world123
+
+123sdaf
+
+this is megan
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/f18cb86>f18cb86</a></td><td>hello world123
+
+123
+
+this is megan
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/af115d3>af115d3</a></td><td>hello world123
+
+123
+
+this is megan
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/eb165cf>eb165cf</a></td><td>hello world123
+
+123
+
+this is megan
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/c776d10>c776d10</a></td><td>hello world123
+
+123
+
+this is megan
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/477a285>477a285</a></td><td>hello world
+
+this is megan
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/6fc97bf>6fc97bf</a></td><td>this is a test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/8b0493c>8b0493c</a></td><td>this is a test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/875a895>875a895</a></td><td>this is a test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/706daa8>706daa8</a></td><td>this is a test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/193bdbd>193bdbd</a></td><td>this is a test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/7fbb29a>7fbb29a</a></td><td>this is a test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/33ad5c0>33ad5c0</a></td><td>this is a test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/7db952a>7db952a</a></td><td>Meow
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/5876235>5876235</a></td><td>test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/fca6517>fca6517</a></td><td>test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/93bfb3e>93bfb3e</a></td><td>test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/0c61785>0c61785</a></td><td>test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/a9d072f>a9d072f</a></td><td>test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/ac72073>ac72073</a></td><td>test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/743f0b0>743f0b0</a></td><td>test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/af1d584>af1d584</a></td><td>test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/023d16f>023d16f</a></td><td>test
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/be79e50>be79e50</a></td><td>asdf
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/5774cb3>5774cb3</a></td><td>test update62
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/b30b705>b30b705</a></td><td>test update62
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/d826371>d826371</a></td><td>test update62
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/33b79a6>33b79a6</a></td><td>test update62
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/2f64f4f>2f64f4f</a></td><td>test update5
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/3cff21b>3cff21b</a></td><td>test update2
+
+</td></tr>
+<tr><td><a href=https://github.com/mriffey1/ConConnect/commit/9ad5c20>9ad5c20</a></td><td>test update
+
+</td></tr></tbody></table>
+15: Doc updates How can I help? section:
+- Removed Discord link
+- Added link to email (GMAIL)
+
+Project Roadmap section:
+- Converted external Google sheets document with features to provide more detailed roadmap
+
+14: updated readme.md 
+10: updated gitignore 
+9: updated coloring and logo (css) 
+8: updated readme to add discord 
+7: updated features in readme 
+6: updated features in readme 
+5: updated readme 
+4: updated readme 
+3: updated readme 
+2: Convert 
+1: Test setup 
