@@ -87,22 +87,22 @@ The goal is to create an open-sourced modular convention application with plugin
 <details><summary>API Endpoints Overview</summary>
 
 - [ ] **Users**
-  - [ ] `GET /api/users` - Get all users.
-  - [ ] `GET /api/users/{userId}` - Get user by ID.
-  - [ ] `POST /api/users` - Create a new user.
-  - [ ] `PUT /api/users/{userId}` - Update an existing user.
-  - [ ] `DELETE /api/users/{userId}` - Delete a user.
+  - [ ] `GET /api/user` - Get all users.
+  - [ ] `GET /api/user/{userId}` - Get user by ID.
+  - [ ] `POST /api/user` - Create a new user.
+  - [ ] `PUT /api/user/{userId}` - Update an existing user.
+  - [ ] `DELETE /api/user/{userId}` - Delete a user.
 
 - [ ] **Authentication**
   - [ ] `POST /api/auth/login` - Authenticate user credentials and return a token.
   - [ ] `POST /api/auth/logout` - Invalidate user session/token.
 
 - [ ] **Events**
-  - [ ] `GET /api/events` - Get all events.
-  - [ ] `GET /api/events/{eventId}` - Get event details by ID.
-  - [ ] `POST /api/events` - Create a new event.
-  - [ ] `PUT /api/events/{eventId}` - Update an event.
-  - [ ] `DELETE /api/events/{eventId}` - Delete an event.
+  - [ ] `GET /api/event` - Get all events.
+  - [ ] `GET /api/event/{eventId}` - Get event details by ID.
+  - [ ] `POST /api/event` - Create a new event.
+  - [ ] `PUT /api/event/{eventId}` - Update an event.
+  - [ ] `DELETE /api/event/{eventId}` - Delete an event.
   - [ ] `GET /api/search` - Search for events based on specific fields and criteria.
     - **Query Parameters**:
       - `entity`: The type of entity to search (e.g., `event`).
@@ -112,11 +112,11 @@ The goal is to create an open-sourced modular convention application with plugin
 
 
 - [ ] **Tickets**
-  - [ ] `GET /api/events/{eventId}/tickets` - Get tickets for an event.
+  - [ ] `GET /api/event/{eventId}/tickets` - Get tickets for an event.
   - [ ] `POST /api/tickets/{ticketId}/attach-to-badge` - Attach tickets to user badge.
 
 - [ ] **Payments**
-  - [ ] `POST /api/payments` - Process a payment for an event or service.
+  - [ ] `POST /api/payment` - Process a payment for an event or service.
 
 </details>
 
@@ -125,8 +125,8 @@ The goal is to create an open-sourced modular convention application with plugin
 <details><summary>Database</summary>
 
 - [ ] **Firebase Plugin** (via REST API: interacts with Firebase for user and event data)
-  - [ ] `GET /api/events` to retrieve events from Firebase.
-  - [ ] `POST /api/events` to create a new event in Firebase.
+  - [ ] `GET /api/event` to retrieve events from Firebase.
+  - [ ] `POST /api/event` to create a new event in Firebase.
 - [ ] **MySQL Plugin** (via REST API: interacts with MySQL for user and event data)
   - [ ] Similar endpoints available for MySQL-based operations.
 
@@ -135,12 +135,12 @@ The goal is to create an open-sourced modular convention application with plugin
 #### Exhibitors
 <details><summary>Exhibitor Management</summary>
 
-- [ ] **Automated QR Code Creation** (via REST API: `POST /api/exhibitors/{exhibitorId}/qr-code`)
-- [ ] **QR Code Scanner** (via REST API: `GET /api/exhibitors/{exhibitorId}/scan`)
+- [ ] **Automated QR Code Creation** (via REST API: `POST /api/exhibitor/{exhibitorId}/qr-code`)
+- [ ] **QR Code Scanner** (via REST API: `GET /api/exhibitor/{exhibitorId}/scan`)
 - [ ] **Exhibitor Profile**
-  - [ ] View and manage exhibitor profiles (via REST API: `GET /api/exhibitors/{exhibitorId}`)
-  - [ ] Update exhibitor details (via REST API: `PUT /api/exhibitors/{exhibitorId}`)
-- [ ] Tools and systems for managing exhibitor information and activities (via REST API: `POST /api/exhibitors`).
+  - [ ] View and manage exhibitor profiles (via REST API: `GET /api/exhibitor/{exhibitorId}`)
+  - [ ] Update exhibitor details (via REST API: `PUT /api/exhibitor/{exhibitorId}`)
+- [ ] Tools and systems for managing exhibitor information and activities (via REST API: `POST /api/exhibitor`).
 
 </details>
 
@@ -148,7 +148,7 @@ The goal is to create an open-sourced modular convention application with plugin
 <details><summary>Awards Management</summary>
 
 - [ ] **Categories** (via REST API: `GET /api/awards/categories`)
-- [ ] **Nominations** (via REST API: `POST /api/awards/{categoryId}/nominations`)
+- [ ] **Nominations** (via REST API: `POST /api/awards/{categoryId}/nomination`)
 - [ ] **Voting** (via REST API: `POST /api/awards/{awardId}/vote`)
 
 </details>
