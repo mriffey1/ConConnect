@@ -1,6 +1,6 @@
-package com.test.conventionapp.service;
+package com.test.conconnect.service;
 
-import com.test.conventionapp.model.User;
+import com.test.conconnect.model.User;
 
 import java.util.concurrent.ExecutionException;
 

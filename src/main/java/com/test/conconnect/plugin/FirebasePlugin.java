@@ -1,11 +1,12 @@
-package com.test.conventionapp.plugin;
+package com.test.conconnect.plugin;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.*;
-import com.test.conventionapp.model.User;
-import com.test.conventionapp.repository.Database;
+import com.test.conconnect.model.Event;
+import com.test.conconnect.model.User;
+import com.test.conconnect.repository.Database;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,8 +14,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
@@ -23,11 +24,12 @@ public class FirebasePlugin implements Database {
     private final Logger logger = LoggerFactory.getLogger(FirebasePlugin.class);
     private final BCryptPasswordEncoder passwordEncoder;
 
-    private DatabaseReference databaseReference;
+    private DatabaseReference usersReference;
+    private DatabaseReference eventsReference;
 
     public FirebasePlugin(BCryptPasswordEncoder passwordEncoder) {
         try {
-            FileInputStream serviceAccount = new FileInputStream("C:\\Users\\akira\\Documents\\New folder (4)\\ConventionWebApp\\db.json");
+            FileInputStream serviceAccount = new FileInputStream("C:\\Users\\akira\\Documents\\New folder (4)\\ConConnect\\db.json");
 
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -36,10 +38,10 @@ public class FirebasePlugin implements Database {
 
             FirebaseApp.initializeApp(options);
 
-            databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+            usersReference = FirebaseDatabase.getInstance().getReference("Users");
+            eventsReference = FirebaseDatabase.getInstance().getReference("Events");
 
-            // Retrieve the last used user ID from the database and initialize userIdCounter accordingly
-            databaseReference.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
+            usersReference.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -62,21 +64,48 @@ public class FirebasePlugin implements Database {
 
     @Override
     public void saveUser(User user) {
-        // Hash the password before saving
         String userId = generateUserId();
         String hashedPassword = passwordEncoder.encode(user.getPasswordHash());
 
         Map<String, Object> userData = new HashMap<>();
         userData.put("username", user.getUsername());
-        userData.put("password", hashedPassword); // Save hashed password to database
+        userData.put("password", hashedPassword);
         userData.put("email", user.getEmail());
 
-        // Save user data to the Realtime Database under "Users" node
-        databaseReference.child(userId).setValueAsync(userData);
+        usersReference.child(userId).setValueAsync(userData);
+    }
+    private String generateUserId() {
+        return String.format("%06d", userIdCounter.getAndIncrement());
     }
 
-    private String generateUserId() {
-        // Generate a 5-digit auto-incrementing number
-        return String.format("%06d", userIdCounter.getAndIncrement());
+    @Override
+    public List<Event> getEvents() {
+        List<Event> eventsList = new ArrayList<>();
+        CountDownLatch latch = new CountDownLatch(1);
+
+        eventsReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Event event = snapshot.getValue(Event.class);
+                    eventsList.add(event);
+                }
+                latch.countDown();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                logger.error("Error occurred while retrieving events", databaseError.toException());
+                latch.countDown();
+            }
+        });
+
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            logger.error("Error occurred while waiting for event data", e);
+        }
+
+        return eventsList;
     }
 }
