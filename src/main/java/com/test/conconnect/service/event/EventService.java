@@ -1,6 +1,6 @@
-package com.test.conconnect.service;
+package com.test.conconnect.service.event;
 
-import com.test.conconnect.model.Event;
+import com.test.conconnect.model.event.Event;
 
 import java.util.List;
 

@@ -1,7 +1,8 @@
-package com.test.conconnect.repository;
+package com.test.conconnect.repository.user;
 
 import com.google.firebase.database.*;
-import com.test.conconnect.model.User;
+import com.test.conconnect.model.user.User;
+import com.test.conconnect.repository.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;

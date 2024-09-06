@@ -1,4 +1,4 @@
-package com.test.conconnect.model;
+package com.test.conconnect.model.event;
 
 public class Event {
     private String eventId;

@@ -1,7 +1,7 @@
-package com.test.conconnect.repository;
+package com.test.conconnect.repository.event;
 
-import com.test.conconnect.model.Event;
-import com.test.conconnect.plugin.FirebasePlugin;
+import com.test.conconnect.model.event.Event;
+import com.test.conconnect.repository.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

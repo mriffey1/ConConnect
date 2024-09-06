@@ -1,7 +1,7 @@
-package com.test.conconnect.controller;
+package com.test.conconnect.controller.event;
 
-import com.test.conconnect.model.Event;
-import com.test.conconnect.service.EventService;
+import com.test.conconnect.model.event.Event;
+import com.test.conconnect.service.event.EventService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

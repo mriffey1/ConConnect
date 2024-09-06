@@ -1,7 +1,7 @@
 package com.test.conconnect.repository;
 
-import com.test.conconnect.model.Event;
-import com.test.conconnect.model.User;
+import com.test.conconnect.model.event.Event;
+import com.test.conconnect.model.user.User;
 
 import java.util.List;
 

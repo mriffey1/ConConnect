@@ -1,7 +1,7 @@
-package com.test.conconnect.service;
+package com.test.conconnect.service.user;
 
-import com.test.conconnect.model.User;
-import com.test.conconnect.repository.UserRepository;
+import com.test.conconnect.model.user.User;
+import com.test.conconnect.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

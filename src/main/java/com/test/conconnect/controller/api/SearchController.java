@@ -1,6 +1,6 @@
-package com.test.conconnect.controller;
+package com.test.conconnect.controller.api;
 
-import com.test.conconnect.service.GenericSearchService;
+import com.test.conconnect.service.api.GenericSearchService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
