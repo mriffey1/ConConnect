@@ -25,7 +25,7 @@ jobs:
       - name: Fetch closed PRs since the last tag or commit
         id: pr_details
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Or use `PAT_TOKEN` if you prefer
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           PR_LIST=$(gh pr list --state closed --base main --json number,title,body --jq '.[] | "\(.number): \(.title) \(.body)"')
           echo "$PR_LIST" > pr_list.txt
@@ -38,10 +38,21 @@ jobs:
             echo "## [PR #$PR_NUMBER] - $PR_TITLE" >> CHANGELOG.md
           done < pr_list.txt
 
-      - name: Commit and push changelog
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  # Use PAT to bypass branch protection
+      - name: Create new branch and commit changelog
         run: |
+          git checkout -b update-changelog-${{ github.run_id }}
           git add CHANGELOG.md
           git commit -m "Update changelog"
-          git push
+
+      - name: Push changes to the new branch
+        run: |
+          git push origin update-changelog-${{ github.run_id }}
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: update-changelog-${{ github.run_id }}
+          title: "Update Changelog"
+          body: "This PR updates the changelog with recent changes."
+          base: main
