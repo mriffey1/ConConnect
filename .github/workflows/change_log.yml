@@ -1,0 +1,42 @@
+name: Update Changelog
+
+on:
+  workflow_dispatch:  # Allows manual trigger of the workflow
+
+jobs:
+  update_changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Ensure CHANGELOG.md exists
+        run: |
+          if [ ! -f CHANGELOG.md ]; then
+            echo "# Changelog" > CHANGELOG.md
+            git add CHANGELOG.md
+            git commit -m "Create initial CHANGELOG.md"
+          fi
+
+      - name: Fetch closed PRs since the last tag or commit
+        id: pr_details
+        run: |
+          PR_LIST=$(gh pr list --state closed --base main --json number,title,body --jq '.[] | "\(.number): \(.title) \(.body)"')
+          echo "$PR_LIST" > pr_list.txt
+
+      - name: Append PR descriptions to CHANGELOG.md
+        run: |
+          while read -r pr; do
+            PR_NUMBER=$(echo "$pr" | cut -d':' -f1)
+            PR_TITLE=$(echo "$pr" | cut -d':' -f2-)
+            echo "## [PR #$PR_NUMBER] - $PR_TITLE" >> CHANGELOG.md
+          done < pr_list.txt
+
+      - name: Commit and push changelog
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git commit -m "Update changelog"
+          git push
