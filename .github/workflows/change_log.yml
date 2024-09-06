@@ -22,21 +22,22 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
 
-      - name: Fetch closed PRs since the last tag or commit
+      - name: Fetch merged PRs into main
         id: pr_details
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PR_LIST=$(gh pr list --state closed --base main --json number,title,body --jq '.[] | "\(.number): \(.title) \(.body)"')
-          echo "$PR_LIST" > CHANGELOG.md  # Directly write PR information to CHANGELOG.md
+          # Fetch only merged PRs into the main branch
+          PR_LIST=$(gh pr list --state merged --base main --json number,title,body --jq '.[] | "\(.number): \(.title) \(.body)"')
+          echo "$PR_LIST"
 
       - name: Append PR descriptions to CHANGELOG.md
         run: |
-          while read -r pr; do
-            PR_NUMBER=$(echo "$pr" | cut -d':' -f1)
-            PR_TITLE=$(echo "$pr" | cut -d':' -f2-)
-            echo "## [PR #$PR_NUMBER] - $PR_TITLE" >> CHANGELOG.md
-          done < CHANGELOG.md
+          # Append the list of merged PRs into the changelog
+          PR_LIST=$(gh pr list --state merged --base main --json number,title,body --jq '.[] | "\(.number): \(.title) \(.body)"')
+          echo "Appending the following merged PRs to CHANGELOG.md:"
+          echo "$PR_LIST"
+          echo "$PR_LIST" >> CHANGELOG.md
 
       - name: Create new branch and commit changelog
         run: |
