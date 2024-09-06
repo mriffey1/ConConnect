@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Ensure CHANGELOG.md exists
         run: |
@@ -38,10 +38,42 @@ jobs:
             echo "## [PR #$PR_NUMBER] - $PR_TITLE" >> CHANGELOG.md
           done < pr_list.txt
 
-      - name: Commit and push changelog
+      - name: Commit changelog using GitHub API
+        id: commit_changes
         run: |
-          git add CHANGELOG.md
-          git commit -m "Update changelog"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub-provided token
+          FILE_CONTENT=$(base64 -w 0 CHANGELOG.md) # Encode the changelog file content to base64
+          COMMIT_MESSAGE="Update changelog"
+          REPO="mriffey1/ConConnect"
+          BRANCH="main"
+          
+          # Get the latest commit SHA on the branch
+          LATEST_COMMIT=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/$REPO/git/refs/heads/$BRANCH | jq -r '.object.sha')
+          
+          # Get the base tree SHA of the latest commit
+          BASE_TREE=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/$REPO/git/commits/$LATEST_COMMIT | jq -r '.tree.sha')
+          
+          # Create a new blob with the changelog content
+          NEW_BLOB=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -X POST \
+            -d "{\"content\":\"$FILE_CONTENT\", \"encoding\": \"base64\"}" \
+            https://api.github.com/repos/$REPO/git/blobs | jq -r '.sha')
+          
+          # Create a new tree object with the updated changelog
+          NEW_TREE=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -X POST \
+            -d "{\"base_tree\": \"$BASE_TREE\", \"tree\": [{\"path\": \"CHANGELOG.md\", \"mode\": \"100644\", \"type\": \"blob\", \"sha\": \"$NEW_BLOB\"}]}" \
+            https://api.github.com/repos/$REPO/git/trees | jq -r '.sha')
+          
+          # Create a new commit object with the updated tree
+          NEW_COMMIT=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -X POST \
+            -d "{\"message\": \"$COMMIT_MESSAGE\", \"tree\": \"$NEW_TREE\", \"parents\": [\"$LATEST_COMMIT\"]}" \
+            https://api.github.com/repos/$REPO/git/commits | jq -r '.sha')
+          
+          # Update the reference of the branch to point to the new commit
+          curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -X PATCH \
+            -d "{\"sha\": \"$NEW_COMMIT\"}" \
+            https://api.github.com/repos/$REPO/git/refs/heads/$BRANCH
