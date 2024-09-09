@@ -44,22 +44,22 @@ The goal is to create an open-sourced modular convention application with plugin
 <details><summary>User Registration and Management</summary>
 
 - [ ] **User Registration**
-  - [ ] User Creation (via REST API: `POST /api/users`)
+  - [ ] User Creation (via REST API: `POST /api/user`)
   - [ ] User Login (via REST API: `POST /api/auth/login`)
   - [ ] **User Password Encryption**
-    - [ ] Custom Username: Check to ensure the username does not exist (via REST API: `GET /api/users/{username}/exists`).
-    - [ ] Create user in the database (via REST API: `POST /api/users`).
+    - [ ] Custom Username: Check to ensure the username does not exist (via REST API: `GET /api/user/{username}/exists`).
+    - [ ] Create user in the database (via REST API: `POST /api/user`).
     - [ ] Hash password/security features.
     - [ ] Include user data fields: First Name, Last Name, Pronouns, Email Address, Password (with confirmation), Mailing Address, Phone Number.
     - [ ] Sign-up button to submit registration (triggers the REST API).
 - [ ] **User Profile Maintenance**
-  - [ ] Profile landing page (via REST API: `GET /api/users/{userId}`).
-  - [ ] Ability to change password, update pronouns, add/update profile picture (via REST API: `PUT /api/users/{userId}`).
-  - [ ] Update mailing address and phone number (via REST API: `PUT /api/users/{userId}/update-address`).
+  - [ ] Profile landing page (via REST API: `GET /api/user/{userId}`).
+  - [ ] Ability to change password, update pronouns, add/update profile picture (via REST API: `PUT /api/user/{userId}`).
+  - [ ] Update mailing address and phone number (via REST API: `PUT /api/user/{userId}/update-address`).
 - [ ] **User Roles**
-  - [ ] Add custom roles (via REST API: `POST /api/users/roles`).
-  - [ ] Set permissions of custom roles (via REST API: `PUT /api/users/roles/{roleId}/permissions`).
-  - [ ] Dropdown with roles and associated permissions (via REST API: `GET /api/users/roles`).
+  - [ ] Add custom roles (via REST API: `POST /api/user/roles`).
+  - [ ] Set permissions of custom roles (via REST API: `PUT /api/user/roles/{roleId}/permissions`).
+  - [ ] Dropdown with roles and associated permissions (via REST API: `GET /api/user/roles`).
 
 </details>
 
@@ -67,19 +67,19 @@ The goal is to create an open-sourced modular convention application with plugin
 
 <details><summary>Events</summary>
 
-- [ ] **Create Events** (via REST API: `POST /api/events`)
-- [ ] **Modify Events** (via REST API: `PUT /api/events/{eventId}`)
-- [ ] **Delete Events** (via REST API: `DELETE /api/events/{eventId}`)
-- [ ] **Electronic Event Tickets** (via REST API: `GET /api/events/{eventId}/tickets`)
+- [ ] **Create Events** (via REST API: `POST /api/event`)
+- [ ] **Modify Events** (via REST API: `PUT /api/event/{eventId}`)
+- [ ] **Delete Events** (via REST API: `DELETE /api/event/{eventId}`)
+- [ ] **Electronic Event Tickets** (via REST API: `GET /api/event/{eventId}/tickets`)
   - [ ] Attach electronic tickets to user badges (via REST API: `POST /api/tickets/{ticketId}/attach-to-badge`).
 - [ ] **QR Codes for Event (Attendee)**
-  - [ ] Generate and manage QR codes for electronic tickets (via REST API: `GET /api/events/{eventId}/qr-code`).
+  - [ ] Generate and manage QR codes for electronic tickets (via REST API: `GET /api/event/{eventId}/qr-code`).
 - [ ] **Printed Event Tickets**
-  - [ ] Provide options for printing event tickets (via REST API: `GET /api/events/{eventId}/print-tickets`).
+  - [ ] Provide options for printing event tickets (via REST API: `GET /api/event/{eventId}/print-tickets`).
 - [ ] **QR Code Scanner for Event (Organizers)**
-  - [ ] Dashboard for organizers to scan QR codes; ability to see who is still missing in real-time (via REST API: `GET /api/events/{eventId}/attendees`).
+  - [ ] Dashboard for organizers to scan QR codes; ability to see who is still missing in real-time (via REST API: `GET /api/event/{eventId}/attendees`).
 - [ ] **Payments**
-  - [ ] Integration with various payment systems for processing transactions (via REST API: `POST /api/payments`).
+  - [ ] Integration with various payment systems for processing transactions (via REST API: `POST /api/payment`).
 
 </details>
 
@@ -87,22 +87,22 @@ The goal is to create an open-sourced modular convention application with plugin
 <details><summary>API Endpoints Overview</summary>
 
 - [ ] **Users**
-  - [ ] `GET /api/users` - Get all users.
-  - [ ] `GET /api/users/{userId}` - Get user by ID.
-  - [ ] `POST /api/users` - Create a new user.
-  - [ ] `PUT /api/users/{userId}` - Update an existing user.
-  - [ ] `DELETE /api/users/{userId}` - Delete a user.
+  - [ ] `GET /api/user` - Get all users.
+  - [ ] `GET /api/user/{userId}` - Get user by ID.
+  - [ ] `POST /api/user` - Create a new user.
+  - [ ] `PUT /api/user/{userId}` - Update an existing user.
+  - [ ] `DELETE /api/user/{userId}` - Delete a user.
 
 - [ ] **Authentication**
   - [ ] `POST /api/auth/login` - Authenticate user credentials and return a token.
   - [ ] `POST /api/auth/logout` - Invalidate user session/token.
 
 - [ ] **Events**
-  - [ ] `GET /api/events` - Get all events.
-  - [ ] `GET /api/events/{eventId}` - Get event details by ID.
-  - [ ] `POST /api/events` - Create a new event.
-  - [ ] `PUT /api/events/{eventId}` - Update an event.
-  - [ ] `DELETE /api/events/{eventId}` - Delete an event.
+  - [ ] `GET /api/event` - Get all events.
+  - [ ] `GET /api/event/{eventId}` - Get event details by ID.
+  - [ ] `POST /api/event` - Create a new event.
+  - [ ] `PUT /api/event/{eventId}` - Update an event.
+  - [ ] `DELETE /api/event/{eventId}` - Delete an event.
   - [ ] `GET /api/search` - Search for events based on specific fields and criteria.
     - **Query Parameters**:
       - `entity`: The type of entity to search (e.g., `event`).
@@ -112,11 +112,11 @@ The goal is to create an open-sourced modular convention application with plugin
 
 
 - [ ] **Tickets**
-  - [ ] `GET /api/events/{eventId}/tickets` - Get tickets for an event.
+  - [ ] `GET /api/event/{eventId}/tickets` - Get tickets for an event.
   - [ ] `POST /api/tickets/{ticketId}/attach-to-badge` - Attach tickets to user badge.
 
 - [ ] **Payments**
-  - [ ] `POST /api/payments` - Process a payment for an event or service.
+  - [ ] `POST /api/payment` - Process a payment for an event or service.
 
 </details>
 
@@ -125,8 +125,8 @@ The goal is to create an open-sourced modular convention application with plugin
 <details><summary>Database</summary>
 
 - [ ] **Firebase Plugin** (via REST API: interacts with Firebase for user and event data)
-  - [ ] `GET /api/events` to retrieve events from Firebase.
-  - [ ] `POST /api/events` to create a new event in Firebase.
+  - [ ] `GET /api/event` to retrieve events from Firebase.
+  - [ ] `POST /api/event` to create a new event in Firebase.
 - [ ] **MySQL Plugin** (via REST API: interacts with MySQL for user and event data)
   - [ ] Similar endpoints available for MySQL-based operations.
 
@@ -135,12 +135,12 @@ The goal is to create an open-sourced modular convention application with plugin
 #### Exhibitors
 <details><summary>Exhibitor Management</summary>
 
-- [ ] **Automated QR Code Creation** (via REST API: `POST /api/exhibitors/{exhibitorId}/qr-code`)
-- [ ] **QR Code Scanner** (via REST API: `GET /api/exhibitors/{exhibitorId}/scan`)
+- [ ] **Automated QR Code Creation** (via REST API: `POST /api/exhibitor/{exhibitorId}/qr-code`)
+- [ ] **QR Code Scanner** (via REST API: `GET /api/exhibitor/{exhibitorId}/scan`)
 - [ ] **Exhibitor Profile**
-  - [ ] View and manage exhibitor profiles (via REST API: `GET /api/exhibitors/{exhibitorId}`)
-  - [ ] Update exhibitor details (via REST API: `PUT /api/exhibitors/{exhibitorId}`)
-- [ ] Tools and systems for managing exhibitor information and activities (via REST API: `POST /api/exhibitors`).
+  - [ ] View and manage exhibitor profiles (via REST API: `GET /api/exhibitor/{exhibitorId}`)
+  - [ ] Update exhibitor details (via REST API: `PUT /api/exhibitor/{exhibitorId}`)
+- [ ] Tools and systems for managing exhibitor information and activities (via REST API: `POST /api/exhibitor`).
 
 </details>
 
@@ -148,7 +148,7 @@ The goal is to create an open-sourced modular convention application with plugin
 <details><summary>Awards Management</summary>
 
 - [ ] **Categories** (via REST API: `GET /api/awards/categories`)
-- [ ] **Nominations** (via REST API: `POST /api/awards/{categoryId}/nominations`)
+- [ ] **Nominations** (via REST API: `POST /api/awards/{categoryId}/nomination`)
 - [ ] **Voting** (via REST API: `POST /api/awards/{awardId}/vote`)
 
 </details>
@@ -169,7 +169,6 @@ If you would like to contribute or provide feedback: please reach out by email b
 
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
-![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white)
 ![REST API](https://img.shields.io/badge/REST%20API-005571.svg?style=for-the-badge&logo=api&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F.svg?style=for-the-badge&logo=Spring-Boot&logoColor=white)
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28.svg?style=for-the-badge&logo=Firebase&logoColor=black)
