@@ -63,6 +63,17 @@ The goal is to create an open-sourced modular convention application with plugin
 
 </details>
 
+<details><summary>Convention Organizer Management</summary>
+
+- [ ] **Assign Locations to Events**
+  - [ ] Manage and assign event locations (via REST API: `PUT /api/event/{eventId}/location`).
+- [ ] **Assign Exhibitors to Booth Locations**
+  - [ ] Assign exhibitors to specific booth locations (via REST API: `POST /api/exhibitor/{exhibitorId}/assign-booth`).
+- [ ] **Approve Events**
+  - [ ] Admin functionality for approving event requests (via REST API: `PUT /api/event/{eventId}/approve`).
+
+</details>
+
 #### Plugin Features
 
 <details><summary>Events</summary>
