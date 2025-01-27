@@ -20,10 +20,33 @@
 
 <hr>
 
-### Current Status
-- In Early Development (<i>as of March 8th, 2024</i>)
+<details>
+<summary>
+Table of Contents
+</summary>
+
+- [Current Status](#current-status)
+- [Project Roadmap](#project-roadmap)
+  - [Introduction](#introduction)
+  - [Overall Vision](#overall-vision)
+  - [Core Functionality](#core-functionality)
+  - [Plugin Features](#plugin-features)
+  - [REST API Functionality](#rest-api-functionality)
+  - [Database](#database)
+  - [Exhibitors](#exhibitors)
+  - [Awards](#awards)
+- [Feature Development Timeline](#feature-development-timeline)
+- [How can I help](#how-can-I-help)
+- [Built With](#built-with)
+
+</details>
+
+#### Current Status
+- In Early Development (<i>as of March 8th, 2024</i>) (PHASE ONE)
 
 <hr>
+
+
 
 ### Project Roadmap
 <div align="justify">
@@ -164,7 +187,53 @@ The goal is to create an open-sourced modular convention application with plugin
 
 </details>
 
+<hr>
 
+
+### Feature Development Timeline
+  
+<details><summary>Phase 1: Core Functionality - User Registration and Management</summary>
+  
+- Implement REST APIs for User Creation, Login, Username Validation, and Password Encryption.
+- Develop User Profile APIs for retrieval and updates.
+- Implement User Roles with custom role management and permissions.
+</details>
+
+<details>
+<summary>Phase 2: Convention Organizer Management</summary>
+
+- Assign event locations and exhibitors to booths.
+- Add event approval functionality for admins.
+</details>
+
+<details>
+<summary>Phase 3: Events Management</summary>
+  
+- Create, modify, delete events, and manage tickets.
+- Integrate QR code generation and scanning.
+- Add payment integration.
+</details>
+
+<details>
+<summary>Phase 4: REST API Development</summary>
+  
+- Finalize all REST API endpoints.
+- Add search functionality.
+</details>
+
+<details>
+<summary>Phase 5: Database Transition</summary>
+  
+- Transition from Firebase to MySQL for scalability.
+</details>
+
+<details>
+<summary>Phase 6: Exhibitors and Awards Management</summary>
+  
+- Develop exhibitor management features.
+- Add awards categories, nominations, and voting.
+
+</details>
 
 <hr>
 
