@@ -6,4 +6,7 @@ import java.util.concurrent.ExecutionException;
 
 public interface UserService {
     User createUser(String username, String password, String email) throws ExecutionException, InterruptedException;
+
+    User findByEmail(String email);
+
 }

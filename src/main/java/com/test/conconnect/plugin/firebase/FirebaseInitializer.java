@@ -18,7 +18,7 @@ public class FirebaseInitializer {
         try {
             // Initialize Firebase only once
             if (FirebaseApp.getApps().isEmpty()) {
-                FileInputStream serviceAccount = new FileInputStream("C:\\Users\\akira\\Documents\\New folder (4)\\ConConnect\\db.json");
+                FileInputStream serviceAccount = new FileInputStream("C:\\Users\\akira\\Documents\\Projects\\ConConnect\\db.json");
 
                 FirebaseOptions options = FirebaseOptions.builder()
                         .setCredentials(GoogleCredentials.fromStream(serviceAccount))

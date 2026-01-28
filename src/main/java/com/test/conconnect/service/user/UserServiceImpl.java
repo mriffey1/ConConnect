@@ -13,6 +13,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+
+
     @Override
     public User createUser(String username, String password, String email) throws ExecutionException, InterruptedException {
         // Check if username is available
@@ -29,5 +31,11 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user, password, email);
 
         return user;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElse(null); // return null if not found
     }
 }
